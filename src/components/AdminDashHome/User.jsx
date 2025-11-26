@@ -1,0 +1,81 @@
+import { useParams, Link } from "react-router-dom";
+import { useStoreState, useStoreActions } from 'easy-peasy';
+
+
+const User = () => {
+    const { id } = useParams();
+    const getUserById = useStoreState((state) => state.getUserById);
+     const user = getUserById(id);
+
+     console.log(user)
+
+
+      // Status badge styling based on status
+  const getStatusStyle = (status) => {
+    switch (status.toLowerCase()) {
+      case 'active':
+        return 'bg-green-100 text-green-800 border-green-200';
+      case 'inactive':
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      default:
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+    }
+  };
+
+  return (
+    <>
+    <div className="text-slate-950 text-2xl pt-10">
+    <div className="text-left text-sm font-medium pl-2">Account registery status</div>
+    <div className="flex items-start justify-center min-h-screen bg-gray-900 p-4 rounded-2xl">
+      <div className="w-full  bg-white rounded-lg shadow-lg overflow-hidden">
+        {/* Header Section */}
+        <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-white">{user.usersdetail.firstname}</h2>
+              <p className="text-blue-100 text-sm mt-1">{user.usersdetail.email}</p>
+            </div>
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-slate-900 font-bold text-2xl">
+              {user.usersdetail.firstname.charAt(0)}
+            </div>
+          </div>
+        </div>
+
+        {/* Body Section */}
+        <div className="p-6 space-y-4">
+          {/* Status */}
+          <div className="flex items-center justify-between py-3 border-b border-gray-200">
+            <span className="text-gray-600 font-medium text-sm">Status</span>
+            <span className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusStyle(user.status)}`}>
+              {user.status}
+            </span>
+          </div>
+
+          {/* Balance */}
+          <div className="flex items-center justify-between py-3">
+            <span className="text-gray-600 font-medium text-sm">Account Balance</span>
+            <span className="text-2xl font-bold text-gray-900">
+              ${user.balance}
+            </span>
+          </div>
+        </div>
+
+        {/* Footer Actions (Optional) */}
+        <div className="px-6 pb-6 flex gap-3">
+          <button className="flex-1 bg-slate-900 text-white py-2 rounded-lg font-medium text-sm hover:bg-slate-800 transition-colors">
+            View Details
+          </button>
+          <button className="flex-1 bg-gray-200 text-gray-700 text-sm py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </>
+  )
+}
+
+export default User
