@@ -68,7 +68,7 @@ const User = () => {
             View Details
           </button>
           <button className="flex-1 bg-gray-200 text-gray-700 text-sm py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-            Edit Profile
+           Top balance
           </button>
         </div>
       </div>
