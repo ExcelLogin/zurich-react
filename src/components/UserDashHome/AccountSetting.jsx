@@ -37,7 +37,7 @@ const usr = useStoreState((state) => state.usr);
 
           <div className="flex flex-col my-7 gap-4 p-5 border-b border-gray-300">
             <Link className="flex items-center gap-2 text-sm bg-gray-400 rounded-md p-2"><span><CiUser /></span><span>Profile Information</span></Link>
-            <Link className="flex items-center gap-2 text-sm p-2"><span><FaShieldAlt /></span><span>Security Settings</span></Link>
+            <Link to="/Userdashboard/changepassword" className="flex items-center gap-2 text-sm p-2"><span><FaShieldAlt /></span><span>Security Settings</span></Link>
             <Link className="flex items-center gap-2 text-sm p-2"><span><IoKeyOutline /></span><span>Transaction Pin</span></Link>
           </div>
 

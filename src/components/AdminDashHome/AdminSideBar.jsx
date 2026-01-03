@@ -33,7 +33,7 @@ const AdminSideBar = () => {
 
 
   return (
-    <aside className='flex flex-col h-min w-full py-12 border-r border-x-slate-300 bg-gray-200'>
+    <aside className='flex flex-col h-min w-full py-12 border-r border-x-slate-300 bg-gray-100'>
         <div className="w-full flex flex-col">
             {/* <div className="w-full">
                 <Link to="/">

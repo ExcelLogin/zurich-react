@@ -30,10 +30,10 @@ const AdminBoardHome = ({ isLoading, fetchError }) => {
     <div className="py-10 mx-1">
 
         <div className='py-2'>
-         <form className="flex border border-red-500" onSubmit={(e) => e.preventDefault()}>
+         <form className="flex items-center border rounded-md px-2 border-slate-500" onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor="search" className='w-32'>Search Users</label>
                 <input
-                   className='w-full'
+                   className='w-full py-2 border-none outline-none bg-transparent'
                     id="search"
                     type="text"
                     placeholder="Search Posts"

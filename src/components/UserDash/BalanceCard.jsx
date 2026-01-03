@@ -1,4 +1,5 @@
 import { LuDot } from "react-icons/lu";
+import { TbWallet,TbActivityHeartbeat } from "react-icons/tb";
 import { GoDotFill } from "react-icons/go";
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react";
@@ -11,17 +12,20 @@ import { useStoreActions,useStoreState } from 'easy-peasy';
 const BalanceCard = () => {
 
 const usr = useStoreState((state) => state.usr);
-//   const setUser= useStoreActions((actions) => actions.setUser);
 
-//   const { data, fetchError, isLoading } = useAxiosFetch('/userData');
-  
-//   useEffect(() => { 
-//     console.log(data)
-//     console.log(fetchError)
-//     setUser(data);
-//   }, [data, usr])  
 
-// console.log(usr)
+  const getStatusStyle = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'active':
+        return 'bg-green-100 text-green-800 border-green-200';
+      case 'inactive':
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      default:
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+    }
+  };
 
   return (
     <div className=' w-full mt-13 rounded-md h-auto '>
@@ -32,17 +36,17 @@ const usr = useStoreState((state) => state.usr);
                 <div className="text-sm font-extrabold">
                  <span>&#163;</span>
                 <span>
-                {usr?.balance}
+                {usr?.balance.toFixed(2)}
                      {/* {isLoading && <p>...</p>}
                     {!isLoading && fetchError && <p>{fetchError}</p>}
                     {!isLoading && !fetchError && (userDetails.balance ? userDetails.balance : <p className="statusMsg">Balance unavailable.</p>)} */}
                 </span>
-                <span>.00</span>
+                {/* <span>.00</span> */}
                 </div>
             </div>
             <div className="flex flex-row justify-between text-xs font-medium py-2 px-2">
                     <div>Status</div>
-                    <div className="flex items-center text-xs text-green-800 bg-green-300 px-1 rounded-3xl"><div><GoDotFill /></div><div className="font-medium">{usr?.status}</div></div>
+                    <div className={`flex items-center text-xs px-1 rounded-3xl ${getStatusStyle(usr?.status)}`}><div><GoDotFill /></div><div className={`font-medium`}>{usr?.status}</div></div>
             </div>
 
             <div className="flex flex-row justify-between text-xs font-normal py-2 px-2">
@@ -56,8 +60,8 @@ const usr = useStoreState((state) => state.usr);
             </div>
 
             <div className="flex flex-row justify-between py-2 px-2  rounded-md shadow-sm">
-                <Link className='border bg-slate-800  p-1 rounded-md shadow-xl text-xs' to="/login" id="fund">Fund Account</Link>
-                <Link className='bg-slate-800 shadow-xl border p-1 text-xs rounded-md' to="/" id="transact-history">Transaction History</Link>
+                <Link className='flex items-center border bg-slate-800  p-1 rounded-md shadow-xl text-xs' to="/login" id="fund"><TbWallet /> <span className="pl-1">Fund Account</span></Link>
+                <Link className='flex items-center bg-slate-800 shadow-xl border p-1 text-xs rounded-md' to="/" id="transact-history"><TbActivityHeartbeat /> <span className="pl-1">Transaction History</span></Link>
             </div>
             
         </div>

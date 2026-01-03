@@ -59,20 +59,28 @@ const LocalTransfer = () => {
     getFieldState,
     formState: { errors, isValid,
      isDirty,
-       isSubmitSuccessful, },
+       isSubmitSuccessful,dirtyFields  },
     control,
   } = useForm({
     defaultValues: {
-      email: "",
-      username: "",
+      Accname: "",
+      amount: "",
+      Accnumber:"",
+      Transactiontype:"",
+      notes:"",
+      Pin:"",
+
     },
   });
+
+
+
 
 
   return (
  <>
 
- <div className="mx-3 pt-10 pb-14 bg-gray-200 lg:mx-10 xl:mx-28">
+ <div className="mx-3 pt-10 pb-56 bg-gray-200 lg:mx-10 xl:mx-28">
 
   <h1 className='text-lg font-bold'>Local Transfer</h1>
                     <div className='bg-slate-950 rounded-2xl my-1'>
@@ -84,7 +92,7 @@ const LocalTransfer = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="1" d="M0,64L48,90.7C96,117,192,171,288,186.7C384,203,480,181,576,154.7C672,128,768,96,864,122.7C960,149,1056,235,1152,256C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
                     </div>
                  
-                    <div className='flex flex-row gap-4 px-3 my-5'><div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-slate-50' ><TbWallet /></div> <div className='font-bold'><h5>Available balance</h5><div className='text-sm'>${usr?.balance}</div></div></div>
+                    <div className='flex flex-row gap-4 px-3 my-5'><div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-slate-50' ><TbWallet /></div> <div className='font-bold'><h5>Available balance</h5><div className='text-sm'>${usr?.balance.toFixed(2)}</div></div></div>
 
                   {/* deposit form */}
                   <form className='w-full flex flex-col p-3  h-auto'>
@@ -92,11 +100,11 @@ const LocalTransfer = () => {
                         <div>
                             <InputLabel htmlFor="tranfer-amount" sx={{ fontSize: '0.775rem' }}>Transfer Amount</InputLabel>
                             <Controller
-                                name="username"
+                                name="amount"
                                 control={control}
-                                defaultValue=""
+                                // defaultValue=""
                                 rules={{
-                                    required: 'Email is required',
+                                    required: 'Enter an amount',
                                 }}
                                 render={({ field }) => (
                                 <FormControl fullWidth size="small"  sx={{'& .MuiOutlinedInput-root': {'&.Mui-focused fieldset': {borderColor: 'black',}}}} error={!!errors.username} >
@@ -111,13 +119,9 @@ const LocalTransfer = () => {
                                             $
                                         </InputAdornment>
                                         }
-                                        endAdornment={
-                                        <InputAdornment position="end">
-                                            .00
-                                        </InputAdornment>
-                                        }
+                                   
                                     />
-                                    {errors.username && (<FormHelperText>{errors.username.message}</FormHelperText>)}
+                                    {errors.amount && (<FormHelperText>{errors.amount.message}</FormHelperText>)}
                                 </FormControl>
                                 )}
                             />
@@ -131,7 +135,7 @@ const LocalTransfer = () => {
                         <div>
                           <InputLabel htmlFor="ben-name" sx={{ fontSize: '0.775rem' }}>Beneficiary Account Name</InputLabel>    
                           <Controller
-                            name="username"
+                            name="Accname"
                             control={control}
                             defaultValue=""
                             rules={{
@@ -144,7 +148,7 @@ const LocalTransfer = () => {
                                       borderColor: 'black',
                                     }
                                   }
-                                }} error={!!errors.username} >
+                                }} error={!!errors.Accname} >
                                 <OutlinedInput
                                   id="ben-name"
                                   {...field}
@@ -157,7 +161,7 @@ const LocalTransfer = () => {
                                   }
                                 />
                                 {errors.username && (
-                                <FormHelperText>{errors.username.message}</FormHelperText>
+                                <FormHelperText>{errors.Accname.message}</FormHelperText>
                                 )}
                              </FormControl>
                             )}
@@ -167,7 +171,7 @@ const LocalTransfer = () => {
                        <div>
                           <InputLabel htmlFor="bank-name" sx={{ fontSize: '0.775rem' }}>Bank Account Number</InputLabel> 
                            <Controller
-                              name="username"
+                              name="Accnumber"
                               control={control}
                               defaultValue=""
                               rules={{
@@ -181,7 +185,7 @@ const LocalTransfer = () => {
                                 }
                               }
                              }} 
-                             error={!!errors.username} >
+                             error={!!errors.Accnumber} >
   
                              {/* <InputLabel>Email</InputLabel> */}
                             <OutlinedInput
@@ -195,7 +199,7 @@ const LocalTransfer = () => {
                                 }
                             />
                               {errors.username && (
-                             <FormHelperText>{errors.username.message}</FormHelperText>
+                             <FormHelperText>{errors.Accnumber.message}</FormHelperText>
                               )}
                             </FormControl>
                               )}
@@ -205,7 +209,7 @@ const LocalTransfer = () => {
                        <div>
                              <InputLabel htmlFor="acc-no" sx={{ fontSize: '0.775rem' }}>Bank Name</InputLabel> 
                             <Controller     
-                                  name="username"
+                                  name="Bankname"
                                   control={control}
                                   defaultValue=""
                                   rules={{
@@ -218,7 +222,7 @@ const LocalTransfer = () => {
                                   borderColor: 'black',
                                 }
                                }
-                              }} error={!!errors.username} >
+                              }} error={!!errors.Bankname} >
                             
                                       {/* <InputLabel>Email</InputLabel> */}
                                       <OutlinedInput
@@ -232,8 +236,8 @@ const LocalTransfer = () => {
                                           </InputAdornment>
                                         }
                                       />
-                                      {errors.username && (
-                                        <FormHelperText>{errors.username.message}</FormHelperText>
+                                      {errors.Bankname && (
+                                        <FormHelperText>{errors.Bankname.message}</FormHelperText>
                                       )}
                                     </FormControl>
                                   )}
@@ -243,11 +247,11 @@ const LocalTransfer = () => {
                        <div>
                             <InputLabel htmlFor="type" sx={{ fontSize: '0.775rem' }}>Transaction type</InputLabel> 
                             <Controller
-                                  name="category"
+                                  name="Transactiontype"
                                   control={control}
                                   rules={{ required: 'Category is required' }}
                                   render={({ field }) => (
-                                    <FormControl fullWidth error={!!errors.category} size="small">
+                                    <FormControl fullWidth error={!!errors.Transactiontype} size="small">
                                       {/* <InputLabel>Category</InputLabel> */}
                                       <Select
                                       id="type"
@@ -263,7 +267,7 @@ const LocalTransfer = () => {
                                         <MenuItem value="vegetables">Savings Account</MenuItem>
                                       </Select>
                                       {errors.category && (
-                                        <FormHelperText>{errors.category.message}</FormHelperText>
+                                        <FormHelperText>{errors.Transactiontype.message}</FormHelperText>
                                       )}
                                     </FormControl>
                                   )}
@@ -305,7 +309,7 @@ const LocalTransfer = () => {
                          <div>
                           <InputLabel htmlFor="tf-pin" sx={{ fontSize: '0.775rem' }}>Transaction Pin</InputLabel> 
                           <Controller
-                              name="username"
+                              name="Pin"
                               control={control}
                               defaultValue=""
                               rules={{
@@ -318,7 +322,7 @@ const LocalTransfer = () => {
                                borderColor: 'black',
                              }
                              }
-                            }} error={!!errors.username} >
+                            }} error={!!errors.Pin} >
                         
                                   {/* <InputLabel>Email</InputLabel> */}
                                   <OutlinedInput
@@ -348,7 +352,7 @@ const LocalTransfer = () => {
                                   }
                                   />
                                   {errors.username && (
-                                    <FormHelperText>{errors.username.message}</FormHelperText>
+                                    <FormHelperText>{errors.Pin.message}</FormHelperText>
                                   )}
                                 </FormControl>
                               )}
@@ -356,7 +360,31 @@ const LocalTransfer = () => {
                          </div>
 
                        {/* total */}
+
+
                         <div className=''>
+                             <div className='mt-4 bg-gray-300 p-2 rounded-lg text-sm'> 
+                                  <div className='flex flex-row items-center gap-3'>
+                                  <BsBuildingFillCheck />
+                                  <span> Transaction Summary</span>
+                                  </div>
+                                <div className='flex flex-row justify-between my-3'>
+                                    <div>Amount</div>  <div>$7000</div>    
+                                </div>
+                                  <div  className='flex flex-row justify-between my-3'>
+                                      <div>Fees</div>  <div>0.00</div>    
+                                  </div>
+                                  <div className='flex flex-row justify-between my-3'>
+                                        <div>Total</div>  <div className='tt-bal'>$6000</div>    
+                                  </div>
+                                  <div  className='flex flex-row justify-between my-3'>
+                                      <div>New Blance after transfer</div>  <div>{`${97000} `}</div>    
+                                </div>
+                            </div>
+                         </div>
+                           
+                   
+                        {/* <div className=''>
                             <div className='mt-4 bg-gray-300 p-2 rounded-lg text-sm'> 
                                   <div className='flex flex-row items-center gap-3'>
                                   <BsBuildingFillCheck />
@@ -372,10 +400,10 @@ const LocalTransfer = () => {
                                       <div>Total</div>  <div className='tt-bal'>$97000</div>    
                                   </div>
                                   <div  className='flex flex-row justify-between my-3'>
-                                      <div>New Blance after transfer</div>  <div>$97000</div>    
+                                      <div>New Blance after transfer</div>  <div>{`${97000} `}</div>    
                                 </div>
                           </div>
-                         </div>
+                         </div> */}
                         {/* submit form */}
                         <div className='flex justify-center items-center rounded-md text-xs font-medium bg-slate-950 text-slate-50 p-1 gap-1 mt-3 mb-3' onClick={handleOpen} > <Visibility /> <span>Preview tranfer</span></div>
                         <div className='flex justify-center items-center rounded-md text-xs font-medium border-2 border-stone-300 p-1 gap-1 mt-3 mb-3'> <IoMdArrowBack /> <span>Back to Dashboard</span></div>

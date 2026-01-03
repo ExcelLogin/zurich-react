@@ -2,6 +2,8 @@ import logo from '../assets/images.jpeg';
 import AdminSideBar from './AdminDashHome/AdminSideBar';
 import AdminBoardHome from './AdminDashHome/AdminBoardHome';
 import User from './AdminDashHome/User';
+import TopBalance from './AdminDashHome/TopBalance';
+import DeductBalance from './AdminDashHome/DeductBalance';
 import { FaRegUserCircle  } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
@@ -30,7 +32,7 @@ const AdminDashBoard = () => {
                 const response = await axiosPrivate.get('Admin/users', {
                     signal: controller.signal
                 });
-                console.log(response.data);
+                // console.log(response.data);
                 isMounted && setUsers(response.data.userD);
             } catch (err) {
                 console.error(err);
@@ -77,17 +79,19 @@ const AdminDashBoard = () => {
       </section>
       <section className='flex flex-col w-full bg-gray-200 h-full overflow-auto  md:w-9/12 lg:w-11/12' >
       <Routes>
-         <Route path="/" element={<AdminBoardHome isLoading={isLoading} fetchError={fetchError}/>} />
+        <Route path="/" element={<AdminBoardHome isLoading={isLoading} fetchError={fetchError}/>} />
         <Route path="/user/:id" element={<User/>} />
+        <Route path="/add/:id" element={<TopBalance/>} />
+        <Route path="/subtract/:id" element={<DeductBalance/>} />
       </Routes>
       </section>
      </main>
      <footer className='flex flex-row fixed -bottom-0 w-full h-auto  bg-red-950 '>
       <section className='w-full flex flex-row '>
-         <div className="bg-slate-950 text-slate-100 text-xs hidden md:flex md:justify-between md:w-full">
+         <div className="bg-slate-950 text-slate-100 text-xs hidden px-2 md:flex md:justify-between md:w-full">
                   <div>Secure banking v1.2.0</div>
                   <div><img src="" alt=""/> &copy;2025 Zurich Bank. All rights reserved</div>
-                  <div className='w-96 flex justify-between'><span>Privacy Policy</span> <span>terms of service</span> <span>contact support</span> </div> 
+                  {/* <div className='w-96 flex justify-between'><span>Privacy Policy</span> <span>terms of service</span> <span>contact support</span> </div>  */}
             </div>
       </section>
      </footer>

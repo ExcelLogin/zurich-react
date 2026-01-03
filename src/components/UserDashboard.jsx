@@ -1,12 +1,21 @@
+// import RouterLoader from "./RouterLoader";
+import Loader from "./Loaders";
 import logo from '../assets/images.jpeg';
 import Aside from './UserDash/Aside';
+
+
 import DashBoardHome from './UserDashHome/DashBoardHome';
 import AccountHistory from './UserDashHome/AccountHistory';
+// const DashBoardHome = lazy(() => import('./UserDashHome/DashBoardHome'));
+// const AccountHistory = lazy(() => import('./UserDashHome/AccountHistory'));
+
 import AccountSettings from './UserDashHome/AccountSetting';
+import ChangePass from './UserDashHome/ChangePass';
 import Deposit from './UserDashHome/Deposit';
 import InterTransfer from './UserDashHome/InterTransfer';
 import LocalTransfer from './UserDashHome/LocalTransfer';
 import Virtualcards from './UserDashHome/Virtualcards';
+import ApplyCard from './UserDashHome/ApplyCard';
 import BuyPlan from './UserDashHome/BuyPlan';
 import IRS from './UserDashHome/IRS';
 import Loan from './UserDashHome/Loan';
@@ -18,14 +27,10 @@ import { Link } from "react-router-dom";
 import  { IoGridSharp  } from "react-icons/io5";
 import { IoIosStats } from "react-icons/io";
 import { IoIosNotifications } from "react-icons/io";
-// import { CiCreditCard1 } from "react-icons/ci";
 import {MdOutlineAppSettingsAlt } from "react-icons/md";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { IoWarning } from "react-icons/io5";
-import { MdTask } from "react-icons/md";
-import { GiConfirmed } from "react-icons/gi";
-import { TbWallet,TbCancel } from "react-icons/tb";
+import { FaShieldAlt } from "react-icons/fa";
 import { TbWorld,TbActivityHeartbeat } from "react-icons/tb";
 import { IoIosSend } from "react-icons/io";
 import { IoAddCircleOutline,IoHome,IoSettingsOutline  } from "react-icons/io5";
@@ -40,10 +45,12 @@ import { Routes, Route } from 'react-router-dom';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useStoreActions,useStoreState } from 'easy-peasy';
+import useLogout  from "../hooks/useLogout"
 // import useAxiosFetch from '../hooks/useAxiosFetch';
 
 
 const UserDashboard = () => {
+  const [routeLoading, setRouteLoading] = useState(false);
 
 //     const [fetchError, setFetchError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -57,6 +64,13 @@ const [open, setOpen] =useState(false);
 const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 
+ const logout = useLogout();
+
+    const signOut = async () => {
+        await logout();
+        navigate('/login');
+    }
+
 
     useEffect(() => {
         let isMounted = true; 
@@ -68,7 +82,7 @@ const handleClose = () => setOpen(false);
                 const response = await axiosPrivate.get("/userData", {
                     signal: controller.signal
                 });
-                console.log(response.data.data);
+            //     console.log(response.data.data);
                  const data = response.data.data
             //     setData(data)
             //     setUser(data)
@@ -95,6 +109,14 @@ const handleClose = () => setOpen(false);
     }, [])
 
 
+
+
+useEffect(() => {
+  setRouteLoading(true);
+  const timer = setTimeout(() => setRouteLoading(false), 1000);
+  return () => clearTimeout(timer);
+}, [location.pathname]);
+
   return (
      <>
      <header className='fixed top-0 z-10 bg-gray-900 text-white w-full'>
@@ -114,36 +136,69 @@ const handleClose = () => setOpen(false);
         </div>
      </section>
     </header>
-     <main class="fixed mx-auto flex flex-row mt-5  h-screen w-screen  overflow-auto">
+     <main className="fixed mx-auto flex flex-row mt-5  h-screen w-screen  overflow-auto">
       <section className='hidden md:flex w-1/4 bg-white h-full overflow-auto z-10 lg:w-1/5'>
            <Aside/>
       </section>
       <section className='flex flex-col w-full bg-gray-200 h-full overflow-auto  md:w-9/12 lg:w-11/12' >
-            <Routes>
+    
+             {/* <Routes>
                <Route path="/" element={<DashBoardHome />} />
                <Route path="accounthistory" element={<AccountHistory/>} />
                <Route path="accountsettings" element={<AccountSettings/>} />
+                <Route path="changepassword" element={<ChangePass/>} />
                <Route path="deposit" element={<Deposit/>} />
                <Route path="intertransfer" element={<InterTransfer/>} />
                <Route path="localtransfer" element={<LocalTransfer/>} />
                <Route path="virtualcards" element={<Virtualcards/>} />
+                <Route path="/virtualcards/applycard" element={<ApplyCard/>} />
                <Route path="buyplan" element={<BuyPlan/>} />
                <Route path="loan" element={<Loan/>} />
                <Route path="irs" element={<IRS/>} />
                <Route path="loanhistory" element={<LoanHistory/>} />
                <Route path="download" element={<Downloads/>} />
                <Route path="support" element={<Support/>} />
-            </Routes>
+            </Routes> */}
 
-                   {/* Menu Modal */}
+  {isLoading && <Loader />}
+
+
+  {/* Route navigation loading */}
+  {routeLoading && !isLoading && <Loader />}
+
+  {/* Show content only when not loading */}
+ 
+
+  {!isLoading && !routeLoading && (
+      <Routes>
+        <Route path="/" element={<DashBoardHome />} />
+        <Route path="accounthistory" element={<AccountHistory />} />
+        <Route path="accountsettings" element={<AccountSettings />} />
+        <Route path="changepassword" element={<ChangePass />} />
+        <Route path="deposit" element={<Deposit />} />
+        <Route path="intertransfer" element={<InterTransfer />} />
+        <Route path="localtransfer" element={<LocalTransfer />} />
+        <Route path="virtualcards" element={<Virtualcards />} />
+        <Route path="/virtualcards/applycard" element={<ApplyCard />} />
+        <Route path="buyplan" element={<BuyPlan />} />
+        <Route path="loan" element={<Loan />} />
+        <Route path="irs" element={<IRS />} />
+        <Route path="loanhistory" element={<LoanHistory />} />
+        <Route path="download" element={<Downloads />} />
+        <Route path="support" element={<Support />} />
+      </Routes>
+  )}
+
+
+        {/* Menu Modal */}
          <Modal
                open={open}
                onClose={handleClose}
                aria-labelledby="modal-modal-title"
                aria-describedby="modal-modal-description"
-               className='w-9/12 h-screen mx-auto sm:w-11/12 md:hidden'
+               className='w-9/12 h-96 mt-32 mx-auto sm:w-11/12 md:hidden'
             >
-               <Box className="flex flex-col h-5/6 px-1 absolute rounded-lg  bg-zinc-200  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+               <Box className="flex flex-col min-h-full  px-1 absolute rounded-lg  bg-zinc-200  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                <div class="flex flex-col px-1 py-6">
                    <div className="close-btn" >&times;</div>
 
@@ -157,9 +212,9 @@ const handleClose = () => setOpen(false);
                         <p className='text-sm'>Select an option to continue</p>
                      </div>
 
-                     <div class="flex flex-col items-center text-slate-100 py-2 gap-6 mt-7">
+                     <div class="flex flex-col items-center text-slate-100 py-2 gap-4 mt-7">
 
-                           <div class="flex items-center gap-4 px-4">
+                           <div class="flex items-center gap-2 px-4">
                               <div class="bg-gray-900  rounded-lg p-4 w-24">
                                  <Link to="/Userdashboard" class="flex flex-col items-center">
                                        <IoHome className='text-2xl'/>
@@ -180,7 +235,7 @@ const handleClose = () => setOpen(false);
                               </div>
                            </div>
                            
-                           <div class="flex items-center gap-4 px-4">
+                           <div class="flex items-center gap-2 px-4">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
                                        <Link to="/Userdashboard/localtransfer" class="flex flex-col items-center">
                                        <IoIosSend className='text-2xl'/>
@@ -201,7 +256,7 @@ const handleClose = () => setOpen(false);
                                  </div>
                            </div>
 
-                           <div class="flex items-center gap-4 px-4 ">
+                           <div class="flex items-center gap-2 px-4 ">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
                                     <Link to="/" class="flex flex-col items-center">
                                        <BiSolidCheckShield className='text-2xl'/>
@@ -222,7 +277,7 @@ const handleClose = () => setOpen(false);
                                  </div>
                            </div>
 
-                           <div class="flex items-center gap-4 px-4 ">
+                           <div class="flex items-center gap-2 px-4 ">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
                                        <Link to="/Userdashboard/accountsettings" class="flex flex-col items-center">
                                        <IoSettingsOutline className='text-2xl'/>
@@ -238,7 +293,7 @@ const handleClose = () => setOpen(false);
                                  <div  class="bg-gray-900 rounded-lg p-4 w-24">
                                        <Link to="/" class="flex flex-col items-center">
                                        <LuLogOut className='text-xs'/>
-                                       <span className='text-sm'>Logout</span>
+                                       <button onClick={signOut}><span className='text-sm'>Logout</span></button>
                                        </Link>
                                  </div>
                            </div>
@@ -260,7 +315,7 @@ const handleClose = () => setOpen(false);
                 </div>
             </Link>
 
-            <Link to="/accounthistory"  className="mr-9">
+            <Link to="/Userdashboard/accounthistory"  className="mr-9">
                 <div   className="flex flex-col items-center">
                  <IoIosStats />
                  <span  className="text-xs">Stats</span>
@@ -291,8 +346,8 @@ const handleClose = () => setOpen(false);
 
               
           </nav>
-           <div className="bg-slate-950 text-slate-100 text-xs hidden md:flex md:justify-between md:w-full">
-                  <div>Secure banking v1.2.0</div>
+           <div className="bg-slate-950 text-slate-100 text-xs hidden px-2 md:flex md:justify-between md:w-full">
+                  <div className='flex items-center'><FaShieldAlt /> <span className='pl-2'>Secure banking v1.2.0</span></div>
                   <div><img src="" alt=""/> &copy;2025 Zurich Bank. All rights reserved</div>
                   <div className='w-96 flex justify-between'><span>Privacy Policy</span> <span>terms of service</span> <span>contact support</span> </div> 
             </div>

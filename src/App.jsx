@@ -1,7 +1,17 @@
+// import { Suspense, lazy } from "react";
+
+// import GlobalLoader from "./components/GlobalLoader";
+// import { delayImport } from "./components/delayImport";
+
 import UserDashboard from './components/UserDashboard';
+
+
 import AdminDashBoard from './components/AdminDashBoards';
+
+// const Layout = lazy(() => delayImport(() => import("./components/Layout")));
 import Layout from './components/Layout';
 import Login from './components/Login/Login/';
+import Register from './components/Register'
 import Adminlogin from './components/Login/AdminLogin';
 import LinkPage from './components/LinkPage';
 import Unauthorized from './components/Unauthorized';
@@ -10,10 +20,9 @@ import Home from './components/Home';
 import Missing from './components/Missing';
 import RequireAuth from './components/RequireAuth';
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { useStoreState, useStoreActions } from 'easy-peasy';
-import useAxiosFetch from './hooks/useAxiosFetch';
-import './App.css'
+
+
+// import './App.css'
 
 const ROLES = {
   'User': 2001,
@@ -23,25 +32,14 @@ const ROLES = {
 
 
 function App() {
-
-//   const usr = useStoreState((state) => state.usr);
-//   const setUser= useStoreActions((actions) => actions.setUser);
-
-//   const { data, fetchError, isLoading } = useAxiosFetch('/userData');
-  
-//   useEffect(() => { 
-//     console.log(data)
-//     console.log(fetchError)
-//     setUser(data);
-//   }, [data,setUser])  
-
-// console.log(usr) 
-
+      
 
   return (
+        //  <Suspense fallback={<GlobalLoader />}>
       <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
+          <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
          <Route path="Adminlogin" element={<Adminlogin />} />
         <Route path="linkpage" element={<LinkPage />} />
@@ -51,20 +49,25 @@ function App() {
           {/* protected routes */}
 
           <Route element={<PersistLogin />}>
-            <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.User]} />}>
-              <Route path="/Userdashboard/*" element={<UserDashboard/>} />
-            </Route>
-
-            <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-              <Route path="/Admin/*" element={<AdminDashBoard/>} />
-            </Route>
-
+              <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.User]} />}>
+                <Route path="/Userdashboard/*" element={<UserDashboard/>} />
+              </Route>
+              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                <Route path="/Admin/*" element={<AdminDashBoard/>} />
+              </Route>
           </Route>
          
         {/* catch all */}
         <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
+
+        //  </Suspense>
+
+      
+
+
+     
   
   )
 }

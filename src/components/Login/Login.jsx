@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import useAuths from '../../hooks/useAuths';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
+import logo from '../../assets/images.jpeg';
 
 import axios from '../../api/axios';
 const LOGIN_URL = '/auth';
@@ -73,13 +73,16 @@ const Login = () => {
     }, [persist])
 
     return (
-        <section className='text-slate-100 bg-slate-900'>
+        <section className='flex flex-col items-center justify-center text-slate-100 min-h-screen min-w-fit bg-gray-800'>
+         <img src={logo} className='w-20 h-10 absolute top-1 left-1 rounded-md' alt="logo"/>
+         <div className='mb-4 font-bold'>Western Zurich Online Banking</div>
+        <div className='flex flex-col w-80 gap-4 bg-slate-700 px-4 pt-2 pb-5 rounded-sm shadow-lg'>     
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+            <h1 className='text-center'>Sign In</h1>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-1'>
+                <label htmlFor="username" className='text-xs'>Email:</label>
                 <input
-                className='text-slate-900'
+                className='text-slate-900 py-1 px-1 border-0 outline-none rounded-sm'
                     type="text"
                     id="username"
                     ref={userRef}
@@ -89,41 +92,43 @@ const Login = () => {
                     required
                 />
 
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password" className='text-xs'>Password:</label>
                 <input
-                className='text-slate-900'
+                className='text-slate-900 py-1 px-1 border-0 outline-none rounded-sm '
                     type="password"
                     id="password"
                     onChange={(e) => setPwd(e.target.value)}
                     value={password}
                     required
                 />
-                 {/* <label htmlFor="password">Confirm Password:</label>
-                <input
-                className='text-slate-900'
-                    type="password"
-                    id="password"
-                    onChange={(e) => setConfirmPwd(e.target.value)}
-                    value={Confirmpassword}
-                    required
-                /> */}
-                <button className='btn-sgn'>Sign In</button>
-                <div className="persistCheck">
+
+                <div className="flex items-center gap-2 my-2">
                     <input
                         type="checkbox"
                         id="persist"
                         onChange={togglePersist}
                         checked={persist}
+                        
                     />
-                    <label htmlFor="persist">Trust This Device</label>
+                    <label htmlFor="persist" className='text-xs'>Trust This Device</label>
                 </div>
+              
+                <button className='text-sm my-1 py-1 border border-gray-500 rounded-sm'>Sign In</button>
+                
             </form>
-            <p>
-                Need an Account?<br />
-                <span className="line">
+            <div className=' flex justify-between text-xs'>
+               
+                <span className="text-xs">
+                 {/* Need an Account?<br /> */}
                     <Link to="/register">Sign Up</Link>
                 </span>
-            </p>
+
+                <span className='text-xs'>Forgot password?</span>
+            </div>
+             
+
+            </div>
+           
         </section>
 
     )

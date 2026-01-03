@@ -37,7 +37,7 @@ const Deposit = () => {
 
   return (
     <>
-    <div className="pt-10 pb-32 px-3 lg:px-20 xl:px-24">
+    <div className="pt-10 pb-56 px-3 lg:px-20 xl:px-24">
           <h1 className='text-xl font-bold'>Deposit Funds</h1>
                  <div className='bg-slate-950 rounded-2xl'>
                     <div className='flex flex-col justify-center items-center mt-5 text-zinc-100' >

@@ -14,7 +14,7 @@ const  decoded = auth?.accessToken
 const  roles  = decoded?.UserInfo?.roles || []
 
 
-console.log(roles)
+// console.log(roles)
 
   return (
       roles?.find(role => allowedRoles?.includes(role))

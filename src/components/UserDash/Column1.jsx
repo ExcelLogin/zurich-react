@@ -1,25 +1,22 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { FaCircleInfo,FaGreaterThan } from "react-icons/fa6";
+import { FaCircleInfo,FaRegClock } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { CiCreditCard1 } from "react-icons/ci";
-import { LuHistory,LuDot } from "react-icons/lu";
-import BalanceCard from "./BalanceCard";
+import { LuHistory,LuList  } from "react-icons/lu";
+import { FaCcMastercard } from "react-icons/fa";
+import { SiAmericanexpress } from "react-icons/si";
 import { CiUser } from "react-icons/ci";
 import { BsBank } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
 import { MdArrowForwardIos } from "react-icons/md";
 import { TbWorld} from "react-icons/tb";
 
-
-
-import { GiConfirmed } from "react-icons/gi";
-import { TbWallet,TbCancel } from "react-icons/tb";
-import { IoWarning } from "react-icons/io5";
-import { MdTask } from "react-icons/md";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+
+import BalanceCard from "./BalanceCard";
 import { useState,useEffect } from 'react'
 import { useStoreActions,useStoreState } from 'easy-peasy';
 
@@ -36,7 +33,7 @@ const handlecloseAcc = () => setAcc(false)
 const handleOpenTf = () => settfOpen(true)
 const handlecloseTf = () => settfOpen(false)
 
-const user = useStoreState((state) => state.user);
+const usr = useStoreState((state) => state.usr);
 
 
 
@@ -54,7 +51,7 @@ const user = useStoreState((state) => state.user);
                     <Link>
                       <button onClick={handleOpenAcc} className="flex flex-col justify-center items-center rounded-2xl w-32 h-20  bg-gray-900 text-slate-50 border">
                         <FaCircleInfo className='text-sm' />
-                        <span className='text-xs font-bold'>Account info </span>
+                        <span className='text-xs font-bold'>Account info</span>
                       </button>
                     </Link>
                     <Link>
@@ -84,46 +81,127 @@ const user = useStoreState((state) => state.user);
         </div>
          {/* cards section */}
         <div className='mt-20 mb-10  border-amber-950'>
-            <div className='w-full flex flex-row justify-between'>
-                <Link to="/Userdashboard/virtualcards" className='flex flex-row items-center gap-2 text-xs'><CiCreditCard1 /> <span className='font-bold text-sm'>Your Cards</span></Link>
-                <Link to="/Userdashboard/virtualcards"  className='flex flex-row items-center gap-2 text-xs'><span className='font-bold text-sm'>View All</span> <MdArrowForwardIos /></Link> 
+            <div className='w-full flex flex-row justify-between px-1'>
+                <Link to="/Userdashboard/virtualcards" className='flex flex-row items-center gap-2 text-xs'><CiCreditCard1 /> <span className='font-bold text-xs'>Your Cards</span></Link>
+                <Link to="/Userdashboard/virtualcards"  className='flex flex-row items-center gap-2 text-xs'><span className='font-bold text-xs'>View All</span> <MdArrowForwardIos /></Link> 
             </div>
 
-          <div className='flex flex-row w-full h-auto  mt-8'>
-            {/* atms */}
-            <div className='h-50 mb-60'>
-                card !
-            </div>
-            <div className='h-50 mb-60'>
-                card !
-            </div>
+            <div className='flex flex-col items-center justify-around gap-8 px-8 w-full h-auto mt-8 md:flex-row'>
+                {/* card 1 */}
+      
+                <div className='w-full'>
+                    <div className='flex flex-col gap-2 w-full  bg-red-900 text-slate-100 py-4 px-3 my-2 rounded-md'>
+                    <div className='flex items-center justify-between'><span className='text-xs'>Western Zurich bank</span><span><FaCcMastercard /></span></div>
+                    <div className='text-xs'>Virtual Banking</div>
+                    <div className='flex items-center gap-1 bg-yellow-100 text-yellow-800 border-yellow-200 w-20 rounded-2xl text-xs pl-1'><span><FaRegClock /></span><span>Pending</span></div>
+                    <div className="flex flex-row items-center  gap-4 w-36">
+                          <div className='flex gap-1'>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                          <div className='flex gap-1'>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                          <div className='flex gap-1'>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                            <div className='flex items-center mt-1 gap-1 text-xs'>
+                              <div >*</div>
+                              <div >*</div>
+                              <div >*</div>
+                              <div >*</div>
+                            </div>
+                    </div>
+                    <div className='flex justify-between items-center text-xs'><span>Card Holder</span><span>Valid Thru</span></div>
+                    <div className='flex justify-between items-center text-xs'><span>{usr?.firstname}</span><span>/</span></div>
+                  </div>
+                   <div className='text-xs'>Mastercard Platinum </div>
+                   <button className='text-xs w-full text-center border border-slate-400 py-2 rounded-md'><Link to="/Userdashboard/virtualcards/applycard" >View Details</Link></button>
+                </div>
+                 
+              
+                {/* card 2 */}
 
-          </div>
-        </div>
+                <div className='w-full'>
+                  <div className='flex flex-col gap-2 w-full bg-black  text-slate-100 py-4 px-3 my-2 rounded-md'>
+                    <div className='flex items-center justify-between'><span className='text-xs'>Western Zurich bank</span><span><SiAmericanexpress /></span></div>
+                    <div className='text-xs'>Virtual Banking</div>
+                    <div className='flex items-center gap-1 bg-green-100 text-green-800 border-green-200 w-16 rounded-2xl text-xs pl-1'><span><FaRegClock /></span><span>Active</span></div>
+                    <div className="flex flex-row items-center  gap-4 w-36">
+                          <div className='flex gap-1'>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                            <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                          <div className='flex gap-1'>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                          <div className='flex gap-1'>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                              <div className="w-1 h-1 bg-white rounded-full"></div>
+                          </div>
+                        
+                            <div className='flex items-center mt-1 gap-1 text-xs'>
+                              <div >8</div>
+                              <div >9</div>
+                              <div >0</div>
+                              <div >6</div>
+                            </div>
+                    </div>
+                    <div className='flex justify-between items-center text-xs'><span>Card Holder</span><span>Valid Thru</span></div>
+                    <div className='flex justify-between items-center text-xs'><span>{usr?.firstname}</span><span>/</span></div>
+                  </div>
+                   <div className='flex justify-between text-xs'><span>American express black </span><span className='flex text-xs'> <span>&#163;</span><span>0.00</span></span></div>
+                   <button className='text-xs w-full text-center border border-slate-400 py-2 rounded-md'><Link to="/Userdashboard/virtualcards/applycard" >View Details</Link></button>
+                   
+                </div>
+                
+               
+            </div>
+      </div>
         {/* transaction history table*/}
       <div className='mt-5 mb-5 py-10 px-1'>
            <div className='w-full flex flex-row justify-between'>
-                <div className='flex flex-row items-center gap-2'> <CiCreditCard1 /> <span className='font-bold text-sm'>Recent Transactions</span></div>
+                <div className='flex flex-row items-center gap-2'> <LuList /><span className='font-bold text-sm'>Recent Transactions</span></div>
                 <div className='flex flex-row items-center gap-2'> <span className='font-bold text-sm'>View All</span> <MdArrowForwardIos /></div>
             </div>
 
         <div class="overflow-x-auto mt-10">
           <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <thead class="bg-gray-500">
+            <thead class="bg-slate-950 text-slate-100">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                   ID
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                   Name
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                   Email
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                   Role
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                <th class="px-6 py-3 text-left text-xs font-medium text-slate-100 uppercase tracking-wider">
                   Status
                 </th>
               </tr>

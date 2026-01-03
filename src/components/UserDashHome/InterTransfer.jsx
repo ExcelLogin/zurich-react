@@ -18,7 +18,7 @@ const InterTransfer = () => {
 
   return (
     <>
-      <div className='pt-10 pb-32 lg:px-20'>
+      <div className='pt-10 pb-56 lg:px-20'>
                 <h2 className='text-xl font-bold pl-2'>International Transfer </h2>
                 <div className='p-5'>
                     <h3 className='font-bold text-sm'>Select Transfer Method</h3>
