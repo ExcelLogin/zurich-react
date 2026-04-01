@@ -11,7 +11,7 @@ const TopBalance = () => {
     const { id } = useParams();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const editBalance = useStoreState((state) => state.editBalance).toFixed(2);
+    const editBalance = useStoreState((state) => state.editBalance);
 
 
     const saveBalance = useStoreActions((actions) => actions.saveBalance);
@@ -46,7 +46,7 @@ const TopBalance = () => {
                     state: { from: location }, 
                     replace: true 
                 });
-                 alert(`Balance updated successfully! New balance: $${result.balance.toFixed(2)}`);
+                 alert(`Balance updated successfully! New balance: $${result.balance?.toFixed(2)}`);
                  setIsSubmitting(false);
             }, 1500);
         } else {
@@ -100,7 +100,7 @@ const TopBalance = () => {
                   id="postTitle"
                   type="text"
                   required
-                  value={editBalance.toFixed(2)}
+                  value={editBalance}
                   onChange={(e) => setBalance(e.target.value)}
                   className="w-full pl-8 pr-4 py-1 border-2 border-gray-200 rounded-lg focus:ring-2 focus:slate-500 focus:border-transparent transition-all duration-200 outline-none text-sm font-medium"
                   placeholder="0.00"

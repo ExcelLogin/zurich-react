@@ -14,7 +14,7 @@ const Home = () => {
 
     return (
 <section className="pb-32">
-         <div className="text-xs text-center">Experience world-class banking services with Remedy Grand Chase Bank - Your trusted international bank</div>
+         {/* <div className="text-xs text-center">Experience world-class banking services with Remedy Grand Chase Bank - Your trusted international bank</div>
          <div style={{  backgroundColor: "black" }} className="w-full bg-cover bg-no-repeat bg-center h-100 -z-10">
           <header className="bg-black border-b border-neutral-50 flex justify-between items-center py-1 px-2 z-10">
           <div><img src={logo}  className='w-16 h-10'  alt="logo" /></div>
@@ -27,11 +27,11 @@ const Home = () => {
                <div><p>Simple and secure personal banking available in person, online, or on your device.</p></div>
                <div className="border border-red-400"></div>
             </div>
-            {/* <div className="w-1/4 h-5/6 border rounded-t-full border-zinc-50"> */}
+     
              <div style={{ backgroundImage: `url(${woman})` }} className="w-1/4 h-5/6  rounded-t-full  bg-cover bg-no-repeat bg-center flex items-end justify-center">
                 <div>jelaou</div>
              </div>
-            {/* </div> */}
+           
             <div className="w-1/3 h-full flex flex-col justify-center items-center space-y-4">
               <div><h1>13M</h1></div>
               <div><p>The first credit card ever issued was made of cardboard and was introduced by American Express in 1958.</p></div>
@@ -73,7 +73,7 @@ const Home = () => {
       </section>
 
        {/* Mobile Banking App */}
-      <section className="flex flex-row">
+      {/* <section className="flex flex-row">
       <div className="w-1/3">
         <h5>Mobile Banking App</h5>
         <div className="text-xl font-extrabold"><h1>Bank anywhere, anytime with our mobile app</h1></div>
@@ -85,11 +85,11 @@ const Home = () => {
         icon
       </div>
       
-      </section>
+      </section> */}
 
         {/* about us */}
 
-    <section className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Empowering businesses and individuals with experts</span>
             <span className="1/2 text-wrap pl-40">We are dedicated to helping businesses and individuals navigate the complexities of finance with confidence and clarity.<br/> With years of experience in financial planning,<br/> investment management, business consulting.</span>
@@ -116,11 +116,11 @@ const Home = () => {
 
       <div className="py-52 w-full border-2 border-red-950 mt-10">theg</div>
       
-    </section>
+    </section> */}
   
     {/* our services */}
 
-    <section className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Expert financial services for your needs</span>
             <span className="1/2 text-wrap pl-40">Move funds between your accounts and schedule transfers with ease. View all your account activity and balances, pay bills automatically, set up e-mail alerts, and more.</span>
@@ -144,11 +144,11 @@ const Home = () => {
         </div>
       </div>
 
-    </section>
+    </section> */}
 
     {/* our expertise*/}
 
-    <section className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Driving innovation and success in Industry Insights</span>
             <span className="1/2 text-wrap pl-40">Remedy Grand Chase Bank Savings Invent is our enterprise approach to innovation and supports our business strategy as a forward-focused bank. It's about using emerging technology to engage with our customers and exceeding their rapidly evolving expectations.</span>
@@ -172,12 +172,12 @@ const Home = () => {
 
       </div>
 
-    </section>
+    </section> */}
 
 
     {/* why choose us */}
 
-    <section  className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section  className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Expertise and client focused solutions for your success</span>
             <span className="1/2 text-wrap pl-40">Our team of experienced professionals delivers personalized, results-driven financial strategies tailored to your unique goals. We prioritize transparency, trust, and long-term success.</span>
@@ -188,7 +188,7 @@ const Home = () => {
           <div className="p-20">overlay1</div>
           <div className="p-20">overlay1</div>
       </div>
-    </section>
+    </section> */}
 
 
 
@@ -196,7 +196,7 @@ const Home = () => {
 
 
 
-    <section className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Client centric strategy for lasting success</span>
             <span className="1/2 text-wrap pl-40">We believe that a successful financial journey starts with understanding your unique needs and aspirations Our approach is built on a foundation of collaboration, transparency, and expertise.</span>
@@ -210,12 +210,12 @@ const Home = () => {
       </div>
 
 
-    </section>
+    </section> */}
 
 
     {/* financial wisdom */}
 
-    <section className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section className="flex flex-col justify-center items-center mt-20 px-10">
 
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Fascinating facts that shapeyour financial knowledge</span>
@@ -238,11 +238,11 @@ const Home = () => {
         </div>
      </div>
         
-    </section>
+    </section> */}
 
      {/* fdic section */}
 
-       <section className="flex flex-row justify-center items-center mt-20 px-10 border border-slate-800">
+       {/* <section className="flex flex-row justify-center items-center mt-20 px-10 border border-slate-800">
          
          <div className="p-10">
           image
@@ -255,13 +255,13 @@ const Home = () => {
            <div><button>Get Started Today</button><button>Explore our services</button></div>
          </div>
           
-       </section>
+       </section> */}
 
 
 
        {/* contact section */}
            
-    <section  className="flex flex-col justify-center items-center mt-20 px-10">
+    {/* <section  className="flex flex-col justify-center items-center mt-20 px-10">
       <div className="flex justify-center items-center px-20">
             <span className="w-1/2 text-2xl font-extrabold">Common business & finance questions and answers</span>
             <span className="1/2 text-wrap pl-40">Contact now</span>
@@ -286,12 +286,12 @@ const Home = () => {
           </div>
       </div>
     
-    </section>
+    </section> */}
     
 
     {/* footer */}
 
-    <footer className="mt-10">
+    {/* <footer className="mt-10">
       <div className="flex  px-20">
         <div>
           <img src="" alt="" />
@@ -326,17 +326,17 @@ const Home = () => {
         <span>Copyright © 2025 All Rights Reserved.</span>
       </div>
       
-    </footer>
+    </footer>  */}
 
-   {/* 
+   
         <div className="hm">
-          <h1>Home</h1>
+          {/* <h1>Home</h1>
             <br />
             <p>You are logged in!</p>
+            <br /> */}
+            {/* <Link to="/Userdashboard">Go to the User dash board page</Link>
             <br />
-            <Link to="/Userdashboard">Go to the User dash board page</Link>
-            <br />
-              <Link to="/Admin">Go to the Admin page</Link>
+              <Link to="/Admin">Go to the Admin page</Link> */}
             <br />
             <br/>
              <Link to="/login">Login</Link>
@@ -348,11 +348,11 @@ const Home = () => {
               <Link to="/Adminlogin">Admin Login</Link>
             <br />
             <br/>
-            <Link to="/linkpage">Go to the link page</Link>
+            {/* <Link to="/linkpage">Go to the link page</Link> */}
             <br/>
             <br/>
          
-        </div> */}
+        </div>
          
 </section>
     )

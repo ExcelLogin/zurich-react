@@ -62,7 +62,7 @@ const Aside = () => {
                 
                 {/* <!-- profile and login buttons --> */}
                 <div className="flex flex-row justify-between mt-3 w-full text-slate-100 xl:justify-evenly">
-                     <button className="flex bg-gray-900 px-4 py-1 rounded-md text-xs lg:px-3 xl:px-5"><Link to="/" className="flex items-center gap-1"> <CiUser/><span className="text-xs">Profile</span></Link></button>
+                     <button className="flex bg-gray-900 px-4 py-1 rounded-md text-xs lg:px-3 xl:px-5"><Link to="/Userdashboard/accountsettings" className="flex items-center gap-1"> <CiUser/><span className="text-xs">Profile</span></Link></button>
                      <button onClick={signOut}  className="flex items-center bg-gray-900 px-4 py-1 rounded-md gap-1 text-xs lg:px-3 xl:px-5" > <LuLogOut /><span className="text-xs">Logout</span></button>
                 </div>
             </div>

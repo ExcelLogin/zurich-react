@@ -11,10 +11,13 @@ const  decoded = auth?.accessToken
      :undefined
 
 
+// console.log(decoded)
+
+
 const  roles  = decoded?.UserInfo?.roles || []
 
 
-// console.log(roles)
+
 
   return (
       roles?.find(role => allowedRoles?.includes(role))

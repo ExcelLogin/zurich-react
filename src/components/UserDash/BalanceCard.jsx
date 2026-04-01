@@ -60,8 +60,8 @@ const usr = useStoreState((state) => state.usr);
             </div>
 
             <div className="flex flex-row justify-between py-2 px-2  rounded-md shadow-sm">
-                <Link className='flex items-center border bg-slate-800  p-1 rounded-md shadow-xl text-xs' to="/login" id="fund"><TbWallet /> <span className="pl-1">Fund Account</span></Link>
-                <Link className='flex items-center bg-slate-800 shadow-xl border p-1 text-xs rounded-md' to="/" id="transact-history"><TbActivityHeartbeat /> <span className="pl-1">Transaction History</span></Link>
+                <Link className='flex items-center border bg-slate-800  p-1 rounded-md shadow-xl text-xs' to="/Userdashboard/deposit" id="fund"><TbWallet /> <span className="pl-1">Fund Account</span></Link>
+                <Link className='flex items-center bg-slate-800 shadow-xl border p-1 text-xs rounded-md' to="/Userdashboard/accounthistory" id="transact-history"><TbActivityHeartbeat /> <span className="pl-1">Transaction History</span></Link>
             </div>
             
         </div>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://l6s96xx0-3500.uks1.devtunnels.ms';
+const BASE_URL = 'http://127.0.0.1:3000';
 
 export default axios.create({
     baseURL: BASE_URL

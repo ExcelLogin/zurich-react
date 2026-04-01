@@ -37,32 +37,31 @@ function App() {
   return (
         //  <Suspense fallback={<GlobalLoader />}>
       <Routes>
-      <Route path="/" element={<Layout />}>
+       <Route path="/" element={<Layout />}>
         {/* public routes */}
-          <Route path="register" element={<Register />} />
+        <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
-         <Route path="Adminlogin" element={<Adminlogin />} />
+        <Route path="Adminlogin" element={<Adminlogin />} />
         <Route path="linkpage" element={<LinkPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
-         <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
           {/* protected routes */}
-
-          <Route element={<PersistLogin />}>
-              <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.User]} />}>
-                <Route path="/Userdashboard/*" element={<UserDashboard/>} />
-              </Route>
-              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                <Route path="/Admin/*" element={<AdminDashBoard/>} />
-              </Route>
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Editor, ROLES.User]} />}>
+            <Route path="/Userdashboard/*" element={<UserDashboard/>} />
           </Route>
+          <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+            <Route path="/Admin/*" element={<AdminDashBoard/>} />
+          </Route>
+        </Route>
          
         {/* catch all */}
         <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
 
-        //  </Suspense>
+     //  </Suspense>
 
       
 

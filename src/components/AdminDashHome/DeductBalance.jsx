@@ -6,7 +6,7 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { FaCircleInfo,FaGreaterThan } from "react-icons/fa6";
 
-const TopBalance = () => {
+const DeductBalance = () => {
   const navigate = useNavigate();
     const location = useLocation();
     const { id } = useParams();
@@ -175,4 +175,4 @@ const TopBalance = () => {
     )
 }
 
-export default TopBalance
+export default DeductBalance

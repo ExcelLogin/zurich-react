@@ -90,7 +90,7 @@ const usr = useStoreState((state) => state.usr);
                 {/* card 1 */}
       
                 <div className='w-full'>
-                    <div className='flex flex-col gap-2 w-full  bg-red-900 text-slate-100 py-4 px-3 my-2 rounded-md'>
+                    <div className='flex flex-col gap-2 w-full  bg-slate-900 text-slate-100 py-4 px-3 my-2 rounded-md'>
                     <div className='flex items-center justify-between'><span className='text-xs'>Western Zurich bank</span><span><FaCcMastercard /></span></div>
                     <div className='text-xs'>Virtual Banking</div>
                     <div className='flex items-center gap-1 bg-yellow-100 text-yellow-800 border-yellow-200 w-20 rounded-2xl text-xs pl-1'><span><FaRegClock /></span><span>Pending</span></div>

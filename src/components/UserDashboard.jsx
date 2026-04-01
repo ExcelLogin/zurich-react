@@ -8,7 +8,6 @@ import DashBoardHome from './UserDashHome/DashBoardHome';
 import AccountHistory from './UserDashHome/AccountHistory';
 // const DashBoardHome = lazy(() => import('./UserDashHome/DashBoardHome'));
 // const AccountHistory = lazy(() => import('./UserDashHome/AccountHistory'));
-
 import AccountSettings from './UserDashHome/AccountSetting';
 import ChangePass from './UserDashHome/ChangePass';
 import Deposit from './UserDashHome/Deposit';
@@ -91,7 +90,7 @@ const handleClose = () => setOpen(false);
             } catch (err) {
                 console.error(err);
                   if (isMounted) {
-                    setFetchError(err.message);
+                    // setFetchError(err.message);
                     setUser(null);
                 }
                 navigate('/Userdashboard', { state: { from: location }, replace: true });
@@ -216,19 +215,19 @@ useEffect(() => {
 
                            <div class="flex items-center gap-2 px-4">
                               <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                 <Link to="/Userdashboard" class="flex flex-col items-center">
+                                 <Link to="/Userdashboard" onClick={handleClose}  class="flex flex-col items-center">
                                        <IoHome className='text-2xl'/>
                                        <span className='text-xs'>Home</span>
                                  </Link>
                               </div>
                               <div  class="bg-gray-900  rounded-lg p-4 w-24">
-                                 <Link to="/Userdashboard/accounthistory" class="flex flex-col items-center">
+                                 <Link to="/Userdashboard/accounthistory" onClick={handleClose}  class="flex flex-col items-center">
                                        <TbActivityHeartbeat className='text-2xl' />
                                         <span className='text-xs'>Activity</span>
                                  </Link>
                               </div>
                               <div  class="bg-gray-900  rounded-lg p-4 w-24">
-                               <Link to="/Userdashboard/virtualcards" class="flex flex-col items-center">
+                               <Link to="/Userdashboard/virtualcards" onClick={handleClose} class="flex flex-col items-center">
                                        <CiCreditCard1 className='text-2xl'/>
                                        <span className='text-xs'>Card</span>
                                  </Link>
@@ -237,19 +236,19 @@ useEffect(() => {
                            
                            <div class="flex items-center gap-2 px-4">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/localtransfer" class="flex flex-col items-center">
+                                       <Link to="/Userdashboard/localtransfer" onClick={handleClose}  class="flex flex-col items-center">
                                        <IoIosSend className='text-2xl'/>
                                         <span className='text-xs'>Transfer</span>
                                        </Link>
                                  </div>
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/intertransfer" class="flex flex-col items-center">
+                                       <Link to="/Userdashboard/intertransfer" onClick={handleClose}  class="flex flex-col items-center">
                                        <TbWorld className='text-2xl'/>
                                         <span className='text-xs'>Int'l wire</span>
                                       </Link>
                                  </div>
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/Userdashboard/deposit" class="flex flex-col items-center">
+                                    <Link to="/Userdashboard/deposit" onClick={handleClose}  class="flex flex-col items-center">
                                        <IoAddCircleOutline className='text-2xl'/>
                                        <span className='text-xs'>Deposit</span>
                                  </Link>
@@ -258,19 +257,19 @@ useEffect(() => {
 
                            <div class="flex items-center gap-2 px-4 ">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/" class="flex flex-col items-center">
+                                    <Link to="/" onClick={handleClose}  class="flex flex-col items-center">
                                        <BiSolidCheckShield className='text-2xl'/>
                                         <span className='text-xs'>Download</span>
                                     </Link>
                                  </div>
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/Userdashboard/loan" class="flex flex-col items-center">
+                                    <Link to="/Userdashboard/loan" onClick={handleClose}  class="flex flex-col items-center">
                                     <FaPeopleRoof className='text-2xl'/>
                                     <span className='text-xs'>Loan</span>
                                     </Link>
                                  </div>
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/irs" class="flex flex-col items-center">
+                                       <Link to="/Userdashboard/irs" onClick={handleClose}  class="flex flex-col items-center">
                                        <RiRefund2Fill className='text-2xl'/>
                                        <span className='text-xs'>IRS funds</span>
                                        </Link>
@@ -279,13 +278,13 @@ useEffect(() => {
 
                            <div class="flex items-center gap-2 px-4 ">
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/accountsettings" class="flex flex-col items-center">
+                                       <Link to="/Userdashboard/accountsettings" onClick={handleClose} class="flex flex-col items-center">
                                        <IoSettingsOutline className='text-2xl'/>
                                        <span className='text-xs'>Setting</span>
                                        </Link>
                                  </div>
                                  <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/support" class="flex flex-col items-center">
+                                       <Link to="/Userdashboard/support" onClick={handleClose} class="flex flex-col items-center">
                                        <MdOutlineContactSupport className='text-2xl'/>
                                        <span className='text-xs'>Support</span>
                                        </Link>

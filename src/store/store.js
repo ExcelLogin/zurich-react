@@ -57,7 +57,7 @@ setDeductBalance: action((state, payload) => {
     }),
 
 
-     saveDeductBalance: thunk(async (actions, updatedBalance, helpers) => {
+    saveDeductBalance: thunk(async (actions, updatedBalance, helpers) => {
         const { Users } = helpers.getState();
         const { id } = updatedBalance;
         try {
