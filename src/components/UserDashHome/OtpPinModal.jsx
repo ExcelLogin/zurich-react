@@ -470,7 +470,7 @@ const OtpPinModal = ({ open, onClose, transferData, onSuccess }) => {
         {/* ── Step progress bar ── */}
         {step !== STEPS.SUCCESS && (
           <div className="flex items-center gap-0 px-6 pt-4 pb-0">
-            {['Send OTP', 'Enter OTP', 'Enter PIN'].map((label, i) => (
+            {['Send OTP', 'Enter OTP', 'Enter OTTC'].map((label, i) => (
               <div key={i} className="flex items-center flex-1 last:flex-none">
                 <div className="flex flex-col items-center">
                   <div
@@ -630,6 +630,10 @@ const OtpPinModal = ({ open, onClose, transferData, onSuccess }) => {
                   <span>Bank</span>
                   <span className="font-medium text-zinc-800">{transferData?.bankName}</span>
                 </div>
+                 <div className="flex justify-between py-1 border-b border-zinc-300">
+                  <span>Fee</span>
+                  <span className="font-medium text-zinc-800">0.00</span>
+                </div>
                 <div className="flex justify-between py-1">
                   <span>Amount</span>
                   <span className="font-bold text-slate-900">${Number(transferData?.amountTransferred || 0).toFixed(2)}</span>
@@ -639,7 +643,7 @@ const OtpPinModal = ({ open, onClose, transferData, onSuccess }) => {
               <button
                 onClick={handleConfirmTransfer}
                 disabled={!pinComplete || step === STEPS.SUBMITTING}
-                className="w-full flex justify-center items-center gap-2 bg-red-950 text-slate-50 rounded-md py-2.5 text-sm font-medium disabled:opacity-40"
+                className="w-full flex justify-center items-center gap-2 bg-slate-950 text-slate-50 rounded-md py-2.5 text-sm font-medium disabled:opacity-40"
               >
                 {step === STEPS.SUBMITTING ? (
                   <>

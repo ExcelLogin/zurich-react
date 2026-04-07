@@ -50,13 +50,12 @@ import useLogout  from "../hooks/useLogout"
 
 const UserDashboard = () => {
   const [routeLoading, setRouteLoading] = useState(false);
-
-//     const [fetchError, setFetchError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
      const setUser = useStoreActions((actions) => actions.setUser);
+     const  setRecentTransactions = useStoreActions((actions) => actions.setRecentTransactions);
 
 const [open, setOpen] =useState(false);
 
@@ -88,12 +87,14 @@ const handleClose = () => setOpen(false);
                 isMounted && setUser(data); 
                 
             } catch (err) {
+
+                 if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
                 console.error(err);
                   if (isMounted) {
                     // setFetchError(err.message);
                     setUser(null);
                 }
-                navigate('/Userdashboard', { state: { from: location }, replace: true });
+                // navigate('/Userdashboard', { state: { from: location }, replace: true });
             }finally {
                 isMounted && setIsLoading(false);
             }
@@ -105,6 +106,38 @@ const handleClose = () => setOpen(false);
             isMounted = false;
             controller.abort();
         }
+    }, [])
+
+     //fetch the users transfer hsitory 
+       useEffect(() => {
+        let isMounted = true; 
+       const controller = new AbortController();
+
+
+        const getTransferHistory = async () => {
+            
+            try {
+                const response = await axiosPrivate.get("/userData/transfers", {
+                    signal: controller.signal
+                });
+            //     console.log(response.data.data);
+                 const data = response.data
+            //     setData(data)
+            //     setUser(data)
+                isMounted && setRecentTransactions(data); 
+                
+            } catch (err) {
+                console.error(err);
+                  if (isMounted) {
+                    // setFetchError(err.message);
+                    setRecentTransactions([]);
+                }
+                // navigate('/Userdashboard', { state: { from: location }, replace: true });
+            }
+        }
+
+        getTransferHistory()
+ 
     }, [])
 
 

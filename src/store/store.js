@@ -5,18 +5,24 @@
 
 
 const createAppStore = (axiosPrivate) => createStore({
-    usr:null,
+ usr:null,
     setUser: action((state, payload) => {
         state.usr = payload;
     }),
 
-  Users: [],
-    setUsers: action((state, payload) => {
+Users: [],
+setUsers: action((state, payload) => {
         state.Users = payload;
     }),
 
- editBalance: '',
-    setBalance: action((state, payload) => {
+RecentTransactions:[],
+setRecentTransactions: action((state, payload) => {
+        state.RecentTransactions = payload;
+    }),
+
+    
+editBalance: '',
+setBalance: action((state, payload) => {
         state.editBalance = payload;
     }),
    
@@ -27,7 +33,9 @@ setDeductBalance: action((state, payload) => {
     }),
 
 
-  saveBalance: thunk(async (actions, updatedBalance, helpers) => {
+
+    // save top user balance async function
+saveBalance: thunk(async (actions, updatedBalance, helpers) => {
         const { Users } = helpers.getState();
         const { id } = updatedBalance;
         try {
@@ -54,10 +62,10 @@ setDeductBalance: action((state, payload) => {
             details: err.response?.data
         };
         }
-    }),
+}),
 
-
-    saveDeductBalance: thunk(async (actions, updatedBalance, helpers) => {
+         // save deduct user balance with async function 
+saveDeductBalance: thunk(async (actions, updatedBalance, helpers) => {
         const { Users } = helpers.getState();
         const { id } = updatedBalance;
         try {
@@ -84,14 +92,71 @@ setDeductBalance: action((state, payload) => {
             details: err.response?.data
         };
         }
-    }),
+}),
+
+
+
+
+saveRecentTransactions: thunk(async (actions, payload, helpers) => {
+        const { RecentTransactions } = helpers.getState();
+    const { id } = payload;
+
+    try {
+        const response = await axiosPrivate.patch(`/Admin/transfer/${id}`, payload);
+
+        // Store the returned API data by replacing the matched transaction
+        actions.setRecentTransactions(
+            RecentTransactions.map(history =>
+                history._id === id.toString()
+                    ? { ...history, ...response.data.data }  // merge returned data into existing
+                    : history
+            )
+        );
+
+        return {
+            success: true,
+            data: response.data,
+            balance: response.data.data,
+            message: 'saved'
+        };
+
+    } catch (err) {
+        return {
+            success: false,
+            error: err.message || 'Failed',
+            details: err.response?.data
+        };
+    }
+}),
    
     
-    UsersCount: computed((state) => state.Users.length),
+
+UsersCount: computed((state) => state.Users.length),
     getUserById: computed((state) => {
         return (id) => state.Users.find(user => (user.usersdetail._id).toString() === id);
-    })
+}),
   
+
+
+RecentTransactionsCount:computed((state) => state.RecentTransactions.length),
+
+
+
+//get all users history
+getTFsById: computed((state) => {
+    return (id) =>
+      state.RecentTransactions.filter(
+        (tfHistory) => tfHistory?.uniqId?._id?.toString() === id
+      );
+}),
+
+//get all user history
+getTFById: computed((state) => {
+    return (id) => state.RecentTransactions.find(history => history?._id?.toString() === id);
+}),
+
+
+
 });
 
 

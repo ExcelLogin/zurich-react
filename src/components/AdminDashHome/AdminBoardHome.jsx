@@ -8,21 +8,6 @@ const AdminBoardHome = ({ isLoading, fetchError }) => {
    
     const Users = useStoreState((state) => state.Users);
     
-    // const search = useStoreState((state) => state.search);
-    // const setSearch = useStoreActions((actions) => actions.setSearch);
-    // // const setUsers= useStoreActions((actions) => actions.setUsers);
-    //  const searchResults = useStoreState((state) => state.searchResults);
-    // const setSearchResults = useStoreActions((actions) => actions.setSearchResults);
-
-    // useEffect(() => {
-    //     const filteredResults = Users.filter((post) =>
-    //         ((post.firstname).toLowerCase()).includes(search.toLowerCase())
-    //         || ((post.balance).toLowerCase()).includes(search.toLowerCase()));
-         
-    //     setSearchResults(filteredResults.reverse());
-
-    //     console.log(searchResults)
-    // }, [Users, search, setSearchResults])
 
 
   return (

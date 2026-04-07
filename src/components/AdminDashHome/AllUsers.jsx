@@ -10,7 +10,7 @@ const AllUsers = () => {
       <>
       <div className='bg-slate-950 text-slate-50 rounded-md mt-10'>
             <Lists/>
-                 
+              
       </div>
       
            

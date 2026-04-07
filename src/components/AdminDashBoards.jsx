@@ -4,6 +4,7 @@ import AdminBoardHome from './AdminDashHome/AdminBoardHome';
 import User from './AdminDashHome/User';
 import TopBalance from './AdminDashHome/TopBalance';
 import DeductBalance from './AdminDashHome/DeductBalance';
+import UserHistory from './AdminDashHome/UserHistory';
 import { FaRegUserCircle  } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
@@ -15,13 +16,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 
 const AdminDashBoard = () => { 
-   const [fetchError, setFetchError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+    const [fetchError, setFetchError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const setUsers = useStoreActions((actions) => actions.setUsers);
+    const setRecentTransactions = useStoreActions((actions) => actions.setRecentTransactions);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
 
+
+
+
+
+// fetch all users data
     useEffect(() => {
         let isMounted = true; 
         const controller = new AbortController();
@@ -35,6 +42,9 @@ const AdminDashBoard = () => {
                 // console.log(response.data);
                 isMounted && setUsers(response.data.userD);
             } catch (err) {
+
+      // ✅ Ignore cancellation errors — these are intentional cleanup
+    if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
                 console.error(err);
                  if (isMounted) {
                     setFetchError(err.message);
@@ -53,6 +63,49 @@ const AdminDashBoard = () => {
             controller.abort();
         }
     }, [])
+
+
+
+// fetch all transactions history data for all users and filter for each user in easy-peasy store 
+
+  useEffect(() => {
+        let isMounted = true; 
+        const controller = new AbortController();
+
+        const getTFHistory = async () => {
+                  try {
+                const response = await axiosPrivate.get("/Admin/transfers", {
+                    signal: controller.signal
+                });
+                // console.log(response.data);
+                 const data = response.data.data
+            //     setData(data)
+            //     setUser(data)
+                isMounted && setRecentTransactions(data); 
+                
+            } catch (err) {
+
+ if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
+
+                console.error(err);
+                  if (isMounted) {
+                    // setFetchError(err.message);
+                    setRecentTransactions([]);
+                }
+                // navigate('/Userdashboard', { state: { from: location }, replace: true });
+            }
+        }
+
+    getTFHistory();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        }
+    }, [])
+
+
+
 
   return (
      <>
@@ -83,6 +136,7 @@ const AdminDashBoard = () => {
         <Route path="/user/:id" element={<User/>} />
         <Route path="/add/:id" element={<TopBalance/>} />
         <Route path="/subtract/:id" element={<DeductBalance/>} />
+        <Route path="/history/:id" element={<UserHistory/>} />
       </Routes>
       </section>
      </main>

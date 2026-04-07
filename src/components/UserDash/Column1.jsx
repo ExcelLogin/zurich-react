@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from "react-router-dom"
 import { FaCircleInfo,FaRegClock } from "react-icons/fa6";
 import { IoIosSend } from "react-icons/io";
@@ -12,10 +12,10 @@ import { BsBank } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
 import { MdArrowForwardIos } from "react-icons/md";
 import { TbWorld} from "react-icons/tb";
-
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+import TransactionTables from "./TransactionTables"
 import BalanceCard from "./BalanceCard";
 import { useState,useEffect } from 'react'
 import { useStoreActions,useStoreState } from 'easy-peasy';
@@ -178,8 +178,9 @@ const usr = useStoreState((state) => state.usr);
                
             </div>
       </div>
+
         {/* transaction history table*/}
-      <div className='mt-5 mb-5 py-10 px-1'>
+      {/* <div className='mt-5 mb-5 py-10 px-1'>
            <div className='w-full flex flex-row justify-between'>
                 <div className='flex flex-row items-center gap-2'> <LuList /><span className='font-bold text-sm'>Recent Transactions</span></div>
                 <div className='flex flex-row items-center gap-2'> <span className='font-bold text-sm'>View All</span> <MdArrowForwardIos /></div>
@@ -266,8 +267,10 @@ const usr = useStoreState((state) => state.usr);
            </table>
         </div>
 
-      </div>
+      </div> */}
       
+
+      <TransactionTables/>
 
 
             {/* Acc Info modal*/}
