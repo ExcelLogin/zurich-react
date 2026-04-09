@@ -15,7 +15,7 @@ import { TbWorld} from "react-icons/tb";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
-import TransactionTables from "./TransactionTables"
+import TransactionTables from "./Transactiontables"
 import BalanceCard from "./BalanceCard";
 import { useState,useEffect } from 'react'
 import { useStoreActions,useStoreState } from 'easy-peasy';
