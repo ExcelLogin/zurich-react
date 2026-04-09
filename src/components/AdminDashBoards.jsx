@@ -2,6 +2,8 @@ import logo from '../assets/images.jpeg';
 import AdminSideBar from './AdminDashHome/AdminSideBar';
 import AdminBoardHome from './AdminDashHome/AdminBoardHome';
 import User from './AdminDashHome/User';
+import UsersMainFrame from './AdminDashHome/UsersMainFrame';
+import UserSingleFrame from './AdminDashHome/UserSingleFrame'
 import TopBalance from './AdminDashHome/TopBalance';
 import DeductBalance from './AdminDashHome/DeductBalance';
 import UserHistory from './AdminDashHome/UserHistory';
@@ -20,6 +22,7 @@ const AdminDashBoard = () => {
     const [isLoading, setIsLoading] = useState(false);
     const setUsers = useStoreActions((actions) => actions.setUsers);
     const setRecentTransactions = useStoreActions((actions) => actions.setRecentTransactions);
+    const setUsersMain = useStoreActions((actions) => actions.setUsersMain);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,7 +46,7 @@ const AdminDashBoard = () => {
                 isMounted && setUsers(response.data.userD);
             } catch (err) {
 
-      // ✅ Ignore cancellation errors — these are intentional cleanup
+      // Ignore cancellation errors — these are intentional cleanup
     if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
                 console.error(err);
                  if (isMounted) {
@@ -67,7 +70,6 @@ const AdminDashBoard = () => {
 
 
 // fetch all transactions history data for all users and filter for each user in easy-peasy store 
-
   useEffect(() => {
         let isMounted = true; 
         const controller = new AbortController();
@@ -104,6 +106,49 @@ const AdminDashBoard = () => {
         }
     }, [])
 
+ 
+
+//]fetch users mainframe data
+  useEffect(() => {
+        let isMounted = true; 
+        const controller = new AbortController();
+
+        const getUserMainData = async () => {
+                  try {
+                const response = await axiosPrivate.get("/Admin/usermaindata", {
+                    signal: controller.signal
+                });
+                // console.log(response.data);
+                 const data = response.data.data
+            //     setData(data)
+            //     setUser(data)
+                isMounted && setUsersMain(data); 
+                
+            } catch (err) {
+
+ if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
+
+                console.error(err);
+                  if (isMounted) {
+                    // setFetchError(err.message);
+                    setUsersMain([]);
+                }
+
+            }
+        }
+
+    getUserMainData();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        }
+    }, [])
+
+
+
+
+
 
 
 
@@ -126,17 +171,19 @@ const AdminDashBoard = () => {
         </div>
      </section>
     </header>
-     <main class="fixed mx-auto flex flex-row mt-5  h-screen w-screen  overflow-auto">
+     <main class="fixed mx-auto flex flex-row mt-5   h-screen w-screen  overflow-auto">
       <section className='hidden md:flex w-1/4 bg-white h-full overflow-auto z-10 lg:w-1/5'>
            <AdminSideBar/>
       </section>
-      <section className='flex flex-col w-full bg-gray-200 h-full overflow-auto  md:w-9/12 lg:w-11/12' >
+      <section className='flex flex-col w-full bg-gray-200 h-full  overflow-auto  md:w-9/12 lg:w-11/12' >
       <Routes>
         <Route path="/" element={<AdminBoardHome isLoading={isLoading} fetchError={fetchError}/>} />
         <Route path="/user/:id" element={<User/>} />
         <Route path="/add/:id" element={<TopBalance/>} />
         <Route path="/subtract/:id" element={<DeductBalance/>} />
         <Route path="/history/:id" element={<UserHistory/>} />
+         <Route path="/usersmainframe/" element={<UsersMainFrame/>} />
+         <Route path="/userframe/:id" element={<UserSingleFrame />} />
       </Routes>
       </section>
      </main>

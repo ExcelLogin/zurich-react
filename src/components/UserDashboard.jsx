@@ -174,23 +174,7 @@ useEffect(() => {
       </section>
       <section className='flex flex-col w-full bg-gray-200 h-full overflow-auto  md:w-9/12 lg:w-11/12' >
     
-             {/* <Routes>
-               <Route path="/" element={<DashBoardHome />} />
-               <Route path="accounthistory" element={<AccountHistory/>} />
-               <Route path="accountsettings" element={<AccountSettings/>} />
-                <Route path="changepassword" element={<ChangePass/>} />
-               <Route path="deposit" element={<Deposit/>} />
-               <Route path="intertransfer" element={<InterTransfer/>} />
-               <Route path="localtransfer" element={<LocalTransfer/>} />
-               <Route path="virtualcards" element={<Virtualcards/>} />
-                <Route path="/virtualcards/applycard" element={<ApplyCard/>} />
-               <Route path="buyplan" element={<BuyPlan/>} />
-               <Route path="loan" element={<Loan/>} />
-               <Route path="irs" element={<IRS/>} />
-               <Route path="loanhistory" element={<LoanHistory/>} />
-               <Route path="download" element={<Downloads/>} />
-               <Route path="support" element={<Support/>} />
-            </Routes> */}
+     
 
   {isLoading && <Loader />}
 

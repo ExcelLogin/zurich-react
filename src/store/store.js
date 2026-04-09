@@ -5,6 +5,14 @@
 
 
 const createAppStore = (axiosPrivate) => createStore({
+
+//users mainframe data for admin priivilege
+UsersMain:[],
+setUsersMain: action((state, payload) => {
+        state.UsersMain = payload;
+    }),
+
+  
  usr:null,
     setUser: action((state, payload) => {
         state.usr = payload;
@@ -129,10 +137,31 @@ saveRecentTransactions: thunk(async (actions, payload, helpers) => {
     }
 }),
    
+
+
+
+
+saveUsersMain:thunk(async (actions, payload, helpers) => {
+      
+}),
     
 
+
+
+
+
+
+
+
 UsersCount: computed((state) => state.Users.length),
-    getUserById: computed((state) => {
+
+
+getUserMainById:computed((state) => {
+        return (id) => state.UsersMain.find(user => (user._id).toString() === id);
+}),
+
+
+getUserById: computed((state) => {
         return (id) => state.Users.find(user => (user.usersdetail._id).toString() === id);
 }),
   

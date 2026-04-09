@@ -75,18 +75,11 @@ const AdminSideBar = () => {
                <Link to="" className="flex flex-row text-xs gap-2  items-center my-2"><FaUsers /><span>Users in registry </span></Link>
                 <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><CiCreditCard1/><span>Total amount in registry</span></Link>
                 <p className="font-bold">Transfers</p>
-                {/* <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><IoIosSend /><span>Total Local transfer</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"> <TbWorld/><span>Total Internationl wire</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"> <IoAddCircleOutline /><span>Deposit</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><BiSolidCheckShield /><span>Save and invest</span></Link>
-                <p className="font-bold">Services</p>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"> <FaPeopleRoof /><span>Loan Request</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><RiRefund2Fill /><span>IRS Tax Refund</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><LuHistory/><span>Loan History</span></Link>
-                <p className="font-bold">Accounts</p>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><CiMobile2 /><span>Download app</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><IoSettingsOutline /><span>Settings</span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><MdOutlineContactSupport/><span>Support Ticket</span></Link> */}
+               
+
+               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
+               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
+               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
             </nav>
         </div>
     </aside>

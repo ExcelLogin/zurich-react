@@ -78,13 +78,18 @@ const User = () => {
                                   <button className="flex-1 bg-gray-300 text-gray-700 text-xs py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
                                   <Link to={`/Admin/add/${user?.usersdetail._id}`} > Top balance</Link>
                                 </button>
+
+                                  <button className="flex-1 bg-gray-300 text-gray-700 text-xs py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                                  <Link to={`/Admin/usersmainframe`} > Update user profile</Link>
+                                </button>
                                 
                               </div>
                             </div> 
 
-                             {/* user transaction history */}
-                        
-                              <TransactionTable filtered={filtered} />
+                          
+
+                          {/* user transaction history */}
+                           <TransactionTable filtered={filtered} />
               </div>
 
   </div>
