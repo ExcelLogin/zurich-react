@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://zurich-express.vercel.app';
+const BASE_URL = 'https://zurich-express.vercel.app';
 
 export default axios.create({
     baseURL: BASE_URL
