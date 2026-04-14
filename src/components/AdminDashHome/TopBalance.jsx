@@ -71,7 +71,7 @@ const TopBalance = () => {
         <div className="max-w-md mx-auto">
         <div className="bg-white  shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="bg-slate-900 px-6 py-4">
+          <div className="bg-[#5B0F12] px-6 py-4">
             <h2 className="text-sm font-bold text-white text-center">
               Top Balance
             </h2>
@@ -118,7 +118,7 @@ const TopBalance = () => {
                 type="button"
                 onClick={() => handleEdit(user?.usersdetail._id)}
                 disabled={isSubmitting}
-                className="flex-1 text-sm bg-slate-900 text-white font-semibold py-1 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+                className="flex-1 text-sm bg-[#5B0F12] text-white font-semibold py-1 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">

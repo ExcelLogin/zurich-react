@@ -45,25 +45,22 @@ const [pendingTransferData, setPendingTransferData] = useState(null);
 
 
 
-  const {
-    handleSubmit,
-    register,
-    reset,
-    getFieldState,
-    formState: { errors, isValid,
-     isDirty,
-       isSubmitSuccessful,dirtyFields  },
-    control,
-  } = useForm({
-    // defaultValues: {
-    //   beneficiaryName: "",
-    //   accountNumber,
-    //   bankName:"",
-    //   amountTransferred:"",
-    //   purposeOfTransfer:"",
-      // Transactiontype
-    // },
-});
+const {
+  handleSubmit,
+  register,
+  reset,
+  watch,                        // ← add this
+  formState: { errors, isValid, isDirty, isSubmitSuccessful, dirtyFields },
+  control,
+} = useForm();
+
+
+const watchedAmount = watch("amountTransferred");
+const fee = 0.00;
+const amount = parseFloat(watchedAmount) || 0;
+const total = amount + fee;
+const newBalance = (usr?.balance || 0) - total;
+const hasAmount = amount > 0;
 
 
 const onSubmit = (data) => {
@@ -256,36 +253,28 @@ const handleTransferSuccess = (responseData) => {
                                   )}
                               />
                        </div>
-
-                       <div>
-                            <InputLabel htmlFor="type" sx={{ fontSize: '0.775rem' }}>Transaction type</InputLabel> 
-                            <Controller
-                                  name="Transactiontype"
-                                  control={control}
-                                  rules={{ required: 'Category is required' }}
-                                  render={({ field }) => (
-                                    <FormControl fullWidth error={!!errors.Transactiontype} size="small">
-                                      {/* <InputLabel>Category</InputLabel> */}
-                                      <Select
-                                      id="type"
-                                        {...field}
-                                      //   label="Category"
-                                      >
-                                        <MenuItem value="Online banking Account">
-                                          <em>Online banking Account</em>
-                                        </MenuItem>
-                                        <MenuItem value="Credit">Credit</MenuItem>
-                                        <MenuItem value="Debit">Debit</MenuItem>
-                                        
-                                       
-                                      </Select>
-                                      {errors.Transactiontype && (
-                                        <FormHelperText>{errors.Transactiontype.message}</FormHelperText>
-                                      )}
-                                    </FormControl>
-                                  )}
-                                />
-                        </div>
+<div className='hidden'>
+  <Controller
+    name="Transactiontype"
+    control={control}
+    defaultValue="Debit"
+    rules={{ required: 'Category is required' }}
+    render={({ field }) => (
+      <FormControl fullWidth error={!!errors.Transactiontype} size="small">
+        <Select id="type" {...field}>
+          <MenuItem value="Online banking Account">
+            <em>Online banking Account</em>
+          </MenuItem>
+          <MenuItem value="Credit">Credit</MenuItem>
+          <MenuItem value="Debit">Debit</MenuItem>
+        </Select>
+        {errors.Transactiontype && (
+          <FormHelperText>{errors.Transactiontype.message}</FormHelperText>
+        )}
+      </FormControl>
+    )}
+  />
+</div>
 
                         <div className='flex flex-row items-center  gap-1'>
                               <span className='text-current p-3 bg-gray-300 rounded-full shadow-3xl text-zinc-100'><FaCircleInfo /></span> 
@@ -324,26 +313,47 @@ const handleTransferSuccess = (responseData) => {
                        {/* total */}
 
 
-                        <div className=''>
-                             <div className='mt-4 bg-gray-300 p-2 rounded-lg text-sm'> 
-                                  <div className='flex flex-row items-center gap-3'>
-                                  <BsBuildingFillCheck />
-                                  <span> Transaction Summary</span>
-                                  </div>
-                                <div className='flex flex-row justify-between my-3'>
-                                    <div>Amount</div>  <div>$7000</div>    
-                                </div>
-                                  <div  className='flex flex-row justify-between my-3'>
-                                      <div>Fees</div>  <div>0.00</div>    
-                                  </div>
-                                  <div className='flex flex-row justify-between my-3'>
-                                        <div>Total</div>  <div className='tt-bal'>$6000</div>    
-                                  </div>
-                                  <div  className='flex flex-row justify-between my-3'>
-                                      <div>New Blance after transfer</div>  <div>{`${97000} `}</div>    
-                                </div>
-                            </div>
-                         </div>
+                   <div className=''>
+  <div className={`mt-4 p-2 rounded-lg text-sm transition-all duration-300 ${hasAmount ? 'bg-gray-300' : 'bg-gray-200 opacity-70'}`}>
+    <div className='flex flex-row items-center gap-3'>
+      <BsBuildingFillCheck />
+      <span className='font-medium'>Transaction Summary</span>
+      {!hasAmount && (
+        <span className='text-xs text-gray-400 ml-auto'>Enter amount to preview</span>
+      )}
+    </div>
+
+    <div className='flex flex-row justify-between my-3'>
+      <div className='text-gray-600'>Amount</div>
+      <div className={hasAmount ? 'font-medium' : 'text-gray-400'}>
+        {hasAmount ? `$${amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : '—'}
+      </div>
+    </div>
+
+    <div className='flex flex-row justify-between my-3'>
+      <div className='text-gray-600'>Fees</div>
+      <div>{hasAmount ? `$${fee.toFixed(2)}` : '—'}</div>
+    </div>
+
+    <div className='flex flex-row justify-between my-3 border-t border-gray-400 pt-2'>
+      <div className='font-medium'>Total</div>
+      <div className={`font-semibold ${hasAmount ? 'text-[#5B0F12]' : 'text-gray-400'}`}>
+        {hasAmount ? `$${total.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : '—'}
+      </div>
+    </div>
+
+    <div className='flex flex-row justify-between my-3'>
+      <div className='text-gray-600'>New balance after transfer</div>
+      <div className={`${hasAmount && newBalance >= 0 ? 'text-green-700' : hasAmount ? 'text-red-600 font-medium' : 'text-gray-400'}`}>
+        {hasAmount
+          ? (newBalance >= 0
+              ? `$${newBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}`
+              : 'Insufficient funds')
+          : '—'}
+      </div>
+    </div>
+  </div>
+</div>
                            
                    
                       
