@@ -44,6 +44,9 @@ const userHistory = () => {
 
   const t = getTFById(id);
 
+
+  // console.log(t)
+
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [isUpdating, setIsUpdating] = useState(false); 

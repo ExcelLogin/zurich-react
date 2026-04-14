@@ -12,21 +12,9 @@ const AdminBoardHome = ({ isLoading, fetchError }) => {
 
   return (
     <>
-    <div className="py-10 mx-1">
+    <div className="py-5 mx-1">
 
-        <div className='py-2'>
-         <form className="flex items-center border rounded-md px-2 border-slate-500" onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor="search" className='w-32'>Search Users</label>
-                <input
-                   className='w-full py-2 border-none outline-none bg-transparent'
-                    id="search"
-                    type="text"
-                    placeholder="Search Posts"
-                    // value={}
-                    // onChange={(e) => setSearch(e.target.value)}
-                />
-            </form>
-        </div>
+      
        <ul>
            {isLoading && <p className="statusMsg">Loading posts...</p>}
             {!isLoading && fetchError && <p className="statusMsg" style={{ color: "red" }}>{fetchError}</p>}

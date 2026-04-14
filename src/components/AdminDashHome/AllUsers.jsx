@@ -8,7 +8,7 @@ const AllUsers = () => {
       // console.log(Users)
   return (
       <>
-      <div className='bg-slate-950 text-slate-50 rounded-md mt-10'>
+      <div className='bg-slate-950 text-slate-50  mt-10'>
             <Lists/>
               
       </div>

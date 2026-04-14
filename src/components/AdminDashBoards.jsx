@@ -6,6 +6,7 @@ import UsersMainFrame from './AdminDashHome/UsersMainFrame';
 import UserSingleFrame from './AdminDashHome/UserSingleFrame'
 import TopBalance from './AdminDashHome/TopBalance';
 import DeductBalance from './AdminDashHome/DeductBalance';
+import CreditUser from './AdminDashHome/CreditUser';
 import UserHistory from './AdminDashHome/UserHistory';
 import { FaRegUserCircle  } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -154,7 +155,7 @@ const AdminDashBoard = () => {
 
   return (
      <>
-     <header className='fixed top-0 z-10 bg-gray-900 text-slate-50 w-full'>
+     <header className='fixed top-0 z-10 bg-[#5B0F12] text-slate-50 w-full'>
       <section className='w-full flex flex-row justify-between'>
         <div >
           <Link to="/Home" className="flex items-center font-bold text-slate-100  ">
@@ -175,12 +176,13 @@ const AdminDashBoard = () => {
       <section className='hidden md:flex w-1/4 bg-white h-full overflow-auto z-10 lg:w-1/5'>
            <AdminSideBar/>
       </section>
-      <section className='flex flex-col w-full bg-gray-200 h-full  overflow-auto  md:w-9/12 lg:w-11/12' >
+      <section className='flex flex-col w-full bg-gray-200 h-auto  overflow-auto  md:w-9/12 lg:w-11/12' >
       <Routes>
         <Route path="/" element={<AdminBoardHome isLoading={isLoading} fetchError={fetchError}/>} />
         <Route path="/user/:id" element={<User/>} />
         <Route path="/add/:id" element={<TopBalance/>} />
         <Route path="/subtract/:id" element={<DeductBalance/>} />
+        <Route path="/credit/:id" element={<CreditUser/>} />
         <Route path="/history/:id" element={<UserHistory/>} />
          <Route path="/usersmainframe/" element={<UsersMainFrame/>} />
          <Route path="/userframe/:id" element={<UserSingleFrame />} />

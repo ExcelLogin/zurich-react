@@ -1,6 +1,6 @@
 // import RouterLoader from "./RouterLoader";
 import Loader from "./Loaders";
-import logo from '../assets/images.jpeg';
+import logo from '../assets/swiss.jpeg';
 import Aside from './UserDash/Aside';
 
 
@@ -151,13 +151,13 @@ useEffect(() => {
 
   return (
      <>
-     <header className='fixed top-0 z-10 bg-gray-900 text-white w-full'>
+     <header className='fixed top-0 z-10 bg-[#5B0F12] text-white w-full'>
       <section className='w-full flex flex-row justify-between'>
         <div >
           <Link to="/Home" className="flex items-center  text-slate-100  ">
 
           {/* Zurich Online bank */}
-          <img src={logo} className='w-20 h-10' alt="logo"/>
+          <img src={logo} className='w-20 h-12' alt="logo"/>
           <span className='px-2 text-xs italic text-slate-50'> Western zurich Online banking</span>
           
           </Link>
@@ -206,121 +206,90 @@ useEffect(() => {
   )}
 
 
-        {/* Menu Modal */}
-         <Modal
-               open={open}
-               onClose={handleClose}
-               aria-labelledby="modal-modal-title"
-               aria-describedby="modal-modal-description"
-               className='w-9/12 h-96 mt-32 mx-auto sm:w-11/12 md:hidden'
-            >
-               <Box className="flex flex-col min-h-full  px-1 absolute rounded-lg  bg-zinc-200  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-               <div class="flex flex-col px-1 py-6">
-                   <div className="close-btn" >&times;</div>
+<Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  className='md:hidden'
+>
+<Box className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-sm min-h-[85vh] max-h-[95vh] overflow-y-auto rounded-2xl bg-white shadow-2xl outline-none">
+    
+    {/* Header */}
+    <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-100">
+      <div className="flex items-center gap-3">
+        <div className="w-11 h-11 rounded-full bg-[#5B0F12] flex items-center justify-center text-white text-sm font-semibold">
+          U1
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold text-gray-900">User 1</span>
+          <span className="text-xs text-gray-500">•••• •••• 3773</span>
+          <span className="text-xs text-emerald-600 font-medium flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+            Verified
+          </span>
+        </div>
+      </div>
+      <button
+        onClick={handleClose}
+        className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-800 transition-colors text-lg font-light"
+        aria-label="Close menu"
+      >
+        &times;
+      </button>
+    </div>
 
-                     <div class="flex ml-4 mb-6 gap-4">
-                        <div class="p-6 border-2 border-slate-900 rounded-full text-xs"></div>
-                        <div class="flex flex-col text-xs"><span>User 1</span><span>Account:36738383773</span><span>Verified</span></div>
-                     </div>
-            
-                     <div class="flex flex-col items-center">
-                        <h4 className='text-lg font-medium'>Banking menu</h4>
-                        <p className='text-sm'>Select an option to continue</p>
-                     </div>
+    {/* Title */}
+    <div className="px-5 pt-4 pb-2">
+      <h4 className="text-xs font-semibold tracking-widest uppercase text-gray-400">Banking Menu</h4>
+    </div>
 
-                     <div class="flex flex-col items-center text-slate-100 py-2 gap-4 mt-7">
+    {/* Menu Grid */}
+    <div className="px-4 pb-6 grid grid-cols-3 gap-3">
 
-                           <div class="flex items-center gap-2 px-4">
-                              <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                 <Link to="/Userdashboard" onClick={handleClose}  class="flex flex-col items-center">
-                                       <IoHome className='text-2xl'/>
-                                       <span className='text-xs'>Home</span>
-                                 </Link>
-                              </div>
-                              <div  class="bg-gray-900  rounded-lg p-4 w-24">
-                                 <Link to="/Userdashboard/accounthistory" onClick={handleClose}  class="flex flex-col items-center">
-                                       <TbActivityHeartbeat className='text-2xl' />
-                                        <span className='text-xs'>Activity</span>
-                                 </Link>
-                              </div>
-                              <div  class="bg-gray-900  rounded-lg p-4 w-24">
-                               <Link to="/Userdashboard/virtualcards" onClick={handleClose} class="flex flex-col items-center">
-                                       <CiCreditCard1 className='text-2xl'/>
-                                       <span className='text-xs'>Card</span>
-                                 </Link>
-                              </div>
-                           </div>
-                           
-                           <div class="flex items-center gap-2 px-4">
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/localtransfer" onClick={handleClose}  class="flex flex-col items-center">
-                                       <IoIosSend className='text-2xl'/>
-                                        <span className='text-xs'>Transfer</span>
-                                       </Link>
-                                 </div>
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/intertransfer" onClick={handleClose}  class="flex flex-col items-center">
-                                       <TbWorld className='text-2xl'/>
-                                        <span className='text-xs'>Int'l wire</span>
-                                      </Link>
-                                 </div>
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/Userdashboard/deposit" onClick={handleClose}  class="flex flex-col items-center">
-                                       <IoAddCircleOutline className='text-2xl'/>
-                                       <span className='text-xs'>Deposit</span>
-                                 </Link>
-                                 </div>
-                           </div>
+      {[
+        { to: "/Userdashboard",                   icon: <IoHome />,                   label: "Home" },
+        { to: "/Userdashboard/accounthistory",     icon: <TbActivityHeartbeat />,      label: "Activity" },
+        { to: "/Userdashboard/virtualcards",       icon: <CiCreditCard1 />,            label: "Card" },
+        { to: "/Userdashboard/localtransfer",      icon: <IoIosSend />,                label: "Transfer" },
+        { to: "/Userdashboard/intertransfer",      icon: <TbWorld />,                  label: "Int'l Wire" },
+        { to: "/Userdashboard/deposit",            icon: <IoAddCircleOutline />,       label: "Deposit" },
+        { to: "/",                                 icon: <BiSolidCheckShield />,       label: "Download" },
+        { to: "/Userdashboard/loan",               icon: <FaPeopleRoof />,             label: "Loan" },
+        { to: "/Userdashboard/irs",                icon: <RiRefund2Fill />,            label: "IRS Funds" },
+        { to: "/Userdashboard/accountsettings",    icon: <IoSettingsOutline />,        label: "Settings" },
+        { to: "/Userdashboard/support",            icon: <MdOutlineContactSupport />,  label: "Support" },
+      ].map(({ to, icon, label }) => (
+        <Link
+          key={label}
+          to={to}
+          onClick={handleClose}
+          className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-gray-50 hover:bg-[#5B0F12]/8 active:scale-95 transition-all duration-150 group"
+        >
+          <span className="text-xl text-[#5B0F12] group-hover:scale-110 transition-transform duration-150">
+            {icon}
+          </span>
+          <span className="text-xs font-medium text-gray-700 text-center leading-tight">{label}</span>
+        </Link>
+      ))}
 
-                           <div class="flex items-center gap-2 px-4 ">
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/" onClick={handleClose}  class="flex flex-col items-center">
-                                       <BiSolidCheckShield className='text-2xl'/>
-                                        <span className='text-xs'>Download</span>
-                                    </Link>
-                                 </div>
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                    <Link to="/Userdashboard/loan" onClick={handleClose}  class="flex flex-col items-center">
-                                    <FaPeopleRoof className='text-2xl'/>
-                                    <span className='text-xs'>Loan</span>
-                                    </Link>
-                                 </div>
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/irs" onClick={handleClose}  class="flex flex-col items-center">
-                                       <RiRefund2Fill className='text-2xl'/>
-                                       <span className='text-xs'>IRS funds</span>
-                                       </Link>
-                                 </div>
-                           </div>
+      {/* Logout — separate treatment */}
+      <button
+        onClick={() => { signOut(); handleClose(); }}
+        className="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-red-50 hover:bg-red-100 active:scale-95 transition-all duration-150 group"
+      >
+        <span className="text-xl text-red-600 group-hover:scale-110 transition-transform duration-150">
+          <LuLogOut />
+        </span>
+        <span className="text-xs font-medium text-red-600 text-center leading-tight">Logout</span>
+      </button>
 
-                           <div class="flex items-center gap-2 px-4 ">
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/accountsettings" onClick={handleClose} class="flex flex-col items-center">
-                                       <IoSettingsOutline className='text-2xl'/>
-                                       <span className='text-xs'>Setting</span>
-                                       </Link>
-                                 </div>
-                                 <div class="bg-gray-900  rounded-lg p-4 w-24">
-                                       <Link to="/Userdashboard/support" onClick={handleClose} class="flex flex-col items-center">
-                                       <MdOutlineContactSupport className='text-2xl'/>
-                                       <span className='text-xs'>Support</span>
-                                       </Link>
-                                 </div>
-                                 <div  class="bg-gray-900 rounded-lg p-4 w-24">
-                                       <Link to="/" class="flex flex-col items-center">
-                                       <LuLogOut className='text-xs'/>
-                                       <button onClick={signOut}><span className='text-sm'>Logout</span></button>
-                                       </Link>
-                                 </div>
-                           </div>
-                     </div>
-                </div>
-               
-               </Box>
-            </Modal>
+    </div>
+  </Box>
+</Modal>
       </section>
      </main>
-     <footer className='flex flex-row fixed -bottom-0 w-full h-auto  bg-gray-900 '>
+     <footer className='flex flex-row fixed -bottom-0 w-full h-auto  bg-[#5B0F12] '>
       <section className='w-full flex flex-row '>
          <nav className="w-full flex flex-row md:hidden">
             <div  className="w-full flex flex-row justify-around gap-2 py-1 text-slate-100">
@@ -340,7 +309,7 @@ useEffect(() => {
 
                  {/* <!-- center modal button --> */}
 
-            <button type="button" onClick={handleOpen}  className='absolute -top-9 text-current p-4 border-4 border-gray-100 bg-slate-950 rounded-full shadow-3xl text-zinc-100'>
+            <button type="button" onClick={handleOpen}  className='absolute -top-9 text-current p-4 border-4 border-gray-100 bg-[#5B0F12] rounded-full shadow-3xl text-zinc-100'>
               <IoGridSharp className='text-xl' />
             </button>
            
@@ -362,7 +331,7 @@ useEffect(() => {
 
               
           </nav>
-           <div className="bg-slate-950 text-slate-100 text-xs hidden px-2 md:flex md:justify-between md:w-full">
+           <div className="bg-[#5B0F12] text-slate-100 text-xs hidden px-2 md:flex md:justify-between md:w-full">
                   <div className='flex items-center'><FaShieldAlt /> <span className='pl-2'>Secure banking v1.2.0</span></div>
                   <div><img src="" alt=""/> &copy;2025 Zurich Bank. All rights reserved</div>
                   <div className='w-96 flex justify-between'><span>Privacy Policy</span> <span>terms of service</span> <span>contact support</span> </div> 

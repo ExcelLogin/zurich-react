@@ -16,7 +16,9 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
 import TransactionTables from "./Transactiontables"
-import BalanceCard from "./BalanceCard";
+import BalanceCard from "./BalanceCard"
+import QuickActions from "./QuickActions";
+import CardsSection from "./CardsSection"
 import { useState,useEffect } from 'react'
 import { useStoreActions,useStoreState } from 'easy-peasy';
 
@@ -35,266 +37,226 @@ const handlecloseTf = () => settfOpen(false)
 
 const usr = useStoreState((state) => state.usr);
 
-
+console.log(usr)
 
 
     
   return (
-<div className='flex flex-col h-min mb-2 px-0 mx-0  py-0 w-full mt-10 rounded-xl bg-gray-200'>
+<div className='flex flex-col h-min mb-10 px-2 py-0 w-full mt-10 rounded-xl bg-gray-200'>
       <BalanceCard/>
          {/*Action buttons*/}
-         <div className="w-full mt-10 rounded-md h-auto">
-             <h5 className='text-center text-sm font-extrabold'>What would you like to do today?</h5>
-              <p className='text-center font-medium text-xs'>Choose for our popular actions below</p>
-              <div class="flex flex-col gap-6 justify-center items-center mt-8 sm:flex-row sm:gap-1 md:flex-col md:gap-6 lg:flex-row lg:gap-2">
-                  <div className='flex flex-row gap-9 shadow-2xl px-1 py-1 rounded-xl sm:gap-3 md:gap-6' >
-                    <Link>
-                      <button onClick={handleOpenAcc} className="flex flex-col justify-center items-center rounded-2xl w-32 h-20  bg-gray-900 text-slate-50 border">
-                        <FaCircleInfo className='text-sm' />
-                        <span className='text-xs font-bold'>Account info</span>
-                      </button>
-                    </Link>
-                    <Link>
-                      <button onClick={handleOpenTf} className="flex flex-col justify-center items-center  text-slate-700 bg-gray-300 rounded-2xl w-32 h-20  text-sm font-bold">
-                        <IoIosSend className='text-sm' />
-                         <span className='text-xs font-bold'>Send money</span>  
-                      </button>
-                    </Link>
-                  </div>
-                  <div className='flex flex-row gap-9 shadow-2xl px-1 py-1 rounded-xl sm:gap-3 md:gap-6'>
-                   <Link to="/Userdashboard/deposit">
-                    <button className="flex flex-col justify-center items-center shadow-outline text-slate-700 bg-gray-300 rounded-2xl w-32 h-20   text-sm font-bold">
-                        <IoAddCircleOutline className='text-sm' />
-                        <span className='text-xs font-bold'> deposit</span>
-                    </button>
-                   </Link>
-                   <Link to="/Userdashboard/accounthistory" className="card">
-                     <button  className="flex flex-col justify-center items-center text-slate-700 bg-gray-300 rounded-2xl w-32 h-20  text-sm font-bold">
-                        <LuHistory className='text-sm' />
-                        <span className='text-xs font-bold'>history</span>
-                     </button>
-                   </Link>
-                  </div>
-                   
-              </div> 
-               <div className="z-10 relative"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="0.3" d="M0,64L48,90.7C96,117,192,171,288,186.7C384,203,480,181,576,154.7C672,128,768,96,864,122.7C960,149,1056,235,1152,256C1248,277,1344,235,1392,213.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg></div>
-        </div>
+        <QuickActions handleOpenAcc={handleOpenAcc}  handleOpenTf={handleOpenTf}/>
+
+
          {/* cards section */}
-        <div className='mt-20 mb-10  border-amber-950'>
-            <div className='w-full flex flex-row justify-between px-1'>
-                <Link to="/Userdashboard/virtualcards" className='flex flex-row items-center gap-2 text-xs'><CiCreditCard1 /> <span className='font-bold text-xs'>Your Cards</span></Link>
-                <Link to="/Userdashboard/virtualcards"  className='flex flex-row items-center gap-2 text-xs'><span className='font-bold text-xs'>View All</span> <MdArrowForwardIos /></Link> 
-            </div>
-
-            <div className='flex flex-col items-center justify-around gap-8 px-8 w-full h-auto mt-8 md:flex-row'>
-                {/* card 1 */}
-      
-                <div className='w-full'>
-                    <div className='flex flex-col gap-2 w-full  bg-slate-900 text-slate-100 py-4 px-3 my-2 rounded-md'>
-                    <div className='flex items-center justify-between'><span className='text-xs'>Western Zurich bank</span><span><FaCcMastercard /></span></div>
-                    <div className='text-xs'>Virtual Banking</div>
-                    <div className='flex items-center gap-1 bg-yellow-100 text-yellow-800 border-yellow-200 w-20 rounded-2xl text-xs pl-1'><span><FaRegClock /></span><span>Pending</span></div>
-                    <div className="flex flex-row items-center  gap-4 w-36">
-                          <div className='flex gap-1'>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                          <div className='flex gap-1'>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                          <div className='flex gap-1'>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                            <div className='flex items-center mt-1 gap-1 text-xs'>
-                              <div >*</div>
-                              <div >*</div>
-                              <div >*</div>
-                              <div >*</div>
-                            </div>
-                    </div>
-                    <div className='flex justify-between items-center text-xs'><span>Card Holder</span><span>Valid Thru</span></div>
-                    <div className='flex justify-between items-center text-xs'><span>{usr?.firstname}</span><span>/</span></div>
-                  </div>
-                   <div className='text-xs'>Mastercard Platinum </div>
-                   <button className='text-xs w-full text-center border border-slate-400 py-2 rounded-md'><Link to="/Userdashboard/virtualcards/applycard" >View Details</Link></button>
-                </div>
-                 
-              
-                {/* card 2 */}
-
-                <div className='w-full'>
-                  <div className='flex flex-col gap-2 w-full bg-black  text-slate-100 py-4 px-3 my-2 rounded-md'>
-                    <div className='flex items-center justify-between'><span className='text-xs'>Western Zurich bank</span><span><SiAmericanexpress /></span></div>
-                    <div className='text-xs'>Virtual Banking</div>
-                    <div className='flex items-center gap-1 bg-green-100 text-green-800 border-green-200 w-16 rounded-2xl text-xs pl-1'><span><FaRegClock /></span><span>Active</span></div>
-                    <div className="flex flex-row items-center  gap-4 w-36">
-                          <div className='flex gap-1'>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                            <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                          <div className='flex gap-1'>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                          <div className='flex gap-1'>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                              <div className="w-1 h-1 bg-white rounded-full"></div>
-                          </div>
-                        
-                            <div className='flex items-center mt-1 gap-1 text-xs'>
-                              <div >8</div>
-                              <div >9</div>
-                              <div >0</div>
-                              <div >6</div>
-                            </div>
-                    </div>
-                    <div className='flex justify-between items-center text-xs'><span>Card Holder</span><span>Valid Thru</span></div>
-                    <div className='flex justify-between items-center text-xs'><span>{usr?.firstname}</span><span>/</span></div>
-                  </div>
-                   <div className='flex justify-between text-xs'><span>American express black </span><span className='flex text-xs'> <span>&#163;</span><span>0.00</span></span></div>
-                   <button className='text-xs w-full text-center border border-slate-400 py-2 rounded-md'><Link to="/Userdashboard/virtualcards/applycard" >View Details</Link></button>
-                   
-                </div>
-                
-               
-            </div>
-      </div>
-
+         
+       <CardsSection/>
         {/* transaction history table*/}
    
       
       <TransactionTables/>
 
 
-            {/* Acc Info modal*/}
-         <Modal
-            open={openacc}
-            onClose={handlecloseAcc}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-             className='w-full mx-auto sm:w-9/12 md:w-1/2'
-            >
-            <Box className="flex flex-col w-11/12 mx-auto h-96  absolute rounded-lg  bg-zinc-200  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">    
-               <div className="flex flex-col items-center w-full rounded-lg  bg-slate-100">
-                       <div className="close-btn" >&times;</div>
-                    <div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-zinc-100'>
-                     <BsBank />
-                    </div>
-                    <div className="flex flex-col items-center mb-2">
-                       <h4 className='text-sm font-medium'>Bank Account Details</h4>
-                       <p className='text-xs'>Wester Zurich Bank</p>
-                       <p className='text-xs'>214 North Tryon street, Chorllet, Zurich 280202</p>
-                    </div>
+          
+{/* Acc Info modal*/}
+<Modal
+  open={openacc}
+  onClose={handlecloseAcc}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  className='w-full mx-auto sm:w-9/12 md:w-1/2'
+>
+  <Box className="flex flex-col w-11/12 mx-auto absolute rounded-lg bg-zinc-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div className="flex flex-col items-center w-full rounded-lg bg-slate-100">
 
-                      <div className=' w-full px-6 py-4'>
-                      <div className="flex flex-row items-left gap-2 px-5"><FaCircleInfo /><h5 className='text-sm font-bold'>Account Details</h5></div> 
-                        <div className='flex justify-between py-2 px-5'>
-                            <div className="flex items-center">
-                            <GoDotFill /><div className='text-xs'>Account balance</div>
-                            </div>
-                            {/* <div>{user.balance}</div> */}
-                        </div>
-                        <div className='flex justify-between py-2 px-5'>
-                            <div className="flex items-center">
-                              <GoDotFill /><div className='text-xs'>Account Number</div>
-                            </div>
-                            <div>{}</div>
-                        </div>
-                        <div className='flex justify-between py-2 px-5'>
-                            <div className="flex items-center">
-                                <GoDotFill /><div className='text-xs'>Sort Code</div>
-                             </div>
-                            <div>{}</div>
-                        </div>
-                        <div className='flex justify-between py-2 px-5'>
-                            <div className="flex items-center">
-                                <GoDotFill /><div className='text-xs'>Payment Reference</div>
-                            </div>
-                           <div>Payment</div>
-                        </div>
-                      </div>
-                    
-                     <div className="flex flex-row py-4 px-1 gap-2 bg-slate-400 mx-2 my-4 rounded-lg">
-                          <div><FaCircleInfo /></div>
-                          <p className='text-xs'>Payment reference helps Remedy Western Zurich Bank track payments faster. Please include it in wire transfer description.</p>
-                    </div>
+      {/* Close button */}
+      <div
+        className="close-btn self-end px-3 pt-2 text-xl cursor-pointer"
+        onClick={handlecloseAcc}
+      >
+        &times;
+      </div>
 
-                </div>
-            </Box>
-            </Modal>
+      {/* Bank icon */}
+      <div className='text-current p-2 bg-[#5B0F12] rounded-full shadow-3xl mb-2 text-zinc-100'>
+        <BsBank />
+      </div>
+
+      {/* Bank header info */}
+      <div className="flex flex-col items-center mb-2 px-2 text-center">
+        <h4 className='text-sm font-medium'>Bank Account Details</h4>
+        <p className='text-xs'>{usr?.bankName ?? "—"}</p>
+        <p className='text-xs text-gray-500'>{usr?.bankAddress ?? "—"}</p>
+      </div>
+
+      {/* Account details rows */}
+      <div className='w-full px-6 py-4'>
+        <div className="flex flex-row items-center gap-2 px-5 mb-2">
+          <FaCircleInfo />
+          <h5 className='text-sm font-bold'>Account Details</h5>
+        </div>
+
+        {/* Account Holder */}
+        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Account Holder</span>
+          </div>
+          <span className='text-xs font-medium'>
+            {usr?.firstName && usr?.lastName
+              ? `${usr.firstName} ${usr.lastName}`
+              : usr?.fullName ?? "—"}
+          </span>
+        </div>
+
+        {/* Account Balance */}
+        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Account Balance</span>
+          </div>
+          <span className='text-xs font-medium text-green-700'>
+            {usr?.balance != null
+              ? new Intl.NumberFormat("en-US", { style: "currency", currency: usr?.currency ?? "USD" }).format(usr.balance)
+              : "—"}
+          </span>
+        </div>
+
+        {/* Account Number */}
+        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Account Number</span>
+          </div>
+          <span className='text-xs font-mono font-medium'>
+            {usr?.accountNumber ?? "—"}
+          </span>
+        </div>
+
+        {/* Sort Code */}
+        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Sort Code</span>
+          </div>
+          <span className='text-xs font-mono font-medium'>
+            {usr?.sortCode ?? "—"}
+          </span>
+        </div>
+
+        {/* Account Type */}
+        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Account Type</span>
+          </div>
+          <span className='text-xs font-medium capitalize'>
+            {usr?.accountType ?? "—"}
+          </span>
+        </div>
+
+        {/* Payment Reference */}
+        <div className='flex justify-between py-2 px-5'>
+          <div className="flex items-center gap-1">
+            <GoDotFill /><span className='text-xs text-gray-500'>Payment Reference</span>
+          </div>
+          <span className='text-xs font-mono font-medium'>
+            {usr?.paymentReference ?? usr?.accountNumber ?? "Payment"}
+          </span>
+        </div>
+      </div>
+
+      {/* Info banner */}
+      <div className="flex flex-row py-3 px-3 gap-2 bg-[#5B0F12] mx-2 mb-4 rounded-lg">
+        <div className="mt-0.5"><FaCircleInfo size={13} /></div>
+        <p className='text-xs'>
+          Payment reference helps {usr?.bankName ?? "your bank"} track payments faster.
+          Please include it in your wire transfer description.
+        </p>
+      </div>
+
+    </div>
+  </Box>
+</Modal>
 
 
+       {/* Send money modal */}
+<Modal
+  open={tfopen}
+  onClose={handlecloseTf}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+  className='w-full mx-auto sm:w-9/12 md:w-1/2'
+>
+  <Box className="flex flex-col w-11/12 mx-auto absolute rounded-lg bg-zinc-200 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
 
-            {/* Send money modal */}
-            <Modal
-              open={tfopen}
-              onClose={handlecloseTf}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-              className='w-full mx-auto sm:w-9/12 md:w-1/2'
-              >
-              <Box className="flex flex-col w-11/12 mx-auto h-96 px-3  absolute rounded-lg  bg-zinc-200  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-               <div className="close-btn">&times;</div>
-               <div className='flex flex-col justify-center items-center'>
-                    <div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-zinc-100'>
-                        <IoIosSend />
-                    </div>
-                   <div className="flex flex-col text-center">
-                       <h4 className='text-lx font-medium'>Send Money</h4>
-                       <p className='text-xs'>Swift and secure money transfer</p>
-                    </div>
-                </div>
-                
-               <div class="flex flex-col gap-9 mt-9">
-                    <Link to="/Userdashboard/localtransfer" className="flex  justify-between items-center">
-                        <div class="flex items-center gap-3" >
-                            <div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-zinc-100'>
-                                <CiUser />
-                            </div>
-                            <div>
-                                <h5 className='text-sm font-bold'> Local transfer</h5>
-                                <p className='text-xs'>0% handling charges</p>
-                            </div>
-                        
-                        </div>
-                        <MdArrowForwardIos />
-                    </Link>
-                    <Link to="/Userdashboard/intertransfer" className="flex justify-between items-center"> 
-                        <div class="flex items-center gap-3" >
-                            <div className='text-current p-2 bg-slate-950 rounded-full shadow-3xl mb-4 text-zinc-100'>
-                                <TbWorld />
-                            </div>
-                            <div>
-                                <h5 className='text-sm font-bold'> International transfer</h5>
-                                <p className='text-xs'>Global reach,0% fee</p>
-                            </div>
-                        
-                        </div>
-                        <MdArrowForwardIos />
-                    </Link>
-                </div>
-                 <button className="close-dialogue" >close</button>
-      </Box>
-      </Modal>
+    {/* Header */}
+    <div className="flex flex-col items-center bg-[#40080a] pt-8 pb-6 px-4 relative">
+
+      {/* Close button */}
+      <button
+        onClick={handlecloseTf}
+        className="absolute top-3 right-4 text-zinc-400 hover:text-zinc-100 text-xl leading-none"
+      >
+        &times;
+      </button>
+
+      <div className='p-3 bg-[#9c373b] rounded-full mb-3 text-zinc-100'>
+        <IoIosSend size={22} />
+      </div>
+
+      <h4 className='text-base font-semibold text-zinc-100'>Send Money</h4>
+      <p className='text-xs text-zinc-400 mt-1'>Swift and secure money transfer</p>
+    </div>
+
+    {/* Transfer options */}
+    <div className="flex flex-col px-4 py-5 gap-3">
+
+      {/* Local Transfer */}
+      <Link
+        to="/Userdashboard/localtransfer"
+        onClick={handlecloseTf}
+        className="flex items-center justify-between bg-slate-100 hover:bg-white transition-colors rounded-xl px-4 py-4"
+      >
+        <div className="flex items-center gap-4">
+          <div className='p-2.5 bg-[#5B0F12] rounded-full text-zinc-100 shrink-0'>
+            <CiUser size={18} />
+          </div>
+          <div>
+            <h5 className='text-sm font-bold text-gray-900'>Local Transfer</h5>
+            <p className='text-xs text-gray-500 mt-0.5'>0% handling charges</p>
+          </div>
+        </div>
+        <MdArrowForwardIos size={14} className="text-gray-400" />
+      </Link>
+
+      {/* International Transfer */}
+      <Link
+        to="/Userdashboard/intertransfer"
+        onClick={handlecloseTf}
+        className="flex items-center justify-between bg-slate-100 hover:bg-white transition-colors rounded-xl px-4 py-4"
+      >
+        <div className="flex items-center gap-4">
+          <div className='p-2.5 bg-[#5B0F12] rounded-full text-zinc-100 shrink-0'>
+            <TbWorld size={18} />
+          </div>
+          <div>
+            <h5 className='text-sm font-bold text-gray-900'>International Transfer</h5>
+            <p className='text-xs text-gray-500 mt-0.5'>Global reach, 0% fee</p>
+          </div>
+        </div>
+        <MdArrowForwardIos size={14} className="text-gray-400" />
+      </Link>
+
+    </div>
+
+    {/* Footer close */}
+    <div className="px-4 pb-5">
+      <button
+        onClick={handlecloseTf}
+        className="w-full py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-gray-600 hover:bg-slate-100 transition-colors"
+      >
+        Cancel
+      </button>
+    </div>
+
+  </Box>
+</Modal>
 
 
 
@@ -307,4 +269,9 @@ const usr = useStoreState((state) => state.usr);
 }
 
 export default Column1
+
+
+
+
+
 

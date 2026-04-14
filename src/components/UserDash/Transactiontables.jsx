@@ -33,6 +33,8 @@ const StatusBadge = ({ status }) => {
 const TransactionTable = () => {
   const RecentTransactions = useStoreState((state) => state.RecentTransactions);
 
+
+
   // Handles both array shape and { data: [] } shape from the store
   const transactions = Array.isArray(RecentTransactions)
     ? RecentTransactions
@@ -63,7 +65,7 @@ const TransactionTable = () => {
       {/* ── Table ── */}
       <div className="overflow-x-auto mt-10">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <thead className="bg-slate-950 text-slate-100">
+          <thead className="bg-[#5B0F12] text-slate-100">
             <tr>
               {[
                 "Ref Code",

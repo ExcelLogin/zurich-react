@@ -24,11 +24,12 @@ const AdminSideBar = () => {
     // const usr = useStoreState((state) => state.usr);
 
   const navigate = useNavigate();
-    const logout = useLogout();
+    // const logout = useLogout();
+        const logout = useLogout('/Adminlogin');
 
     const signOut = async () => {
-        await logout();
-        navigate('/Adminlogin');
+        await logout(navigate);
+navigate('/Adminlogin', { replace: true });
     }
 
 
@@ -64,22 +65,18 @@ const AdminSideBar = () => {
                 
                 {/* <!-- profile and login buttons --> */}
                 <div className="flex flex-row justify-between mt-3 w-full text-slate-100 xl:justify-evenly">
-                     <button className="flex bg-gray-900 px-4 py-1 rounded-md text-xs lg:px-3 xl:px-5"><Link to="/" className="flex items-center gap-1"> <CiUser/><span className="text-xs">Profile</span></Link></button>
-                     <button onClick={signOut}  className="flex items-center bg-gray-900 px-4 py-1 rounded-md gap-1 text-xs lg:px-3 xl:px-5" > <LuLogOut /><span className="text-xs">Logout</span></button>
+                     <button className="flex bg-[#5B0F12] px-4 py-1 rounded-md text-xs lg:px-3 xl:px-5"><Link to="/" className="flex items-center gap-1"> <CiUser/><span className="text-xs">Profile</span></Link></button>
+                     <button onClick={signOut}  className="flex items-center bg-[#5B0F12] px-4 py-1 rounded-md gap-1 text-xs lg:px-3 xl:px-5" > <LuLogOut /><span className="text-xs">Logout</span></button>
                 </div>
             </div>
                {/* <!-- Navigation --> */}
             <nav className="w-full flex flex-col  py-10 px-5">
                <p className="font-bold">Main Menu</p>
-               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
-               <Link to="" className="flex flex-row text-xs gap-2  items-center my-2"><FaUsers /><span>Users in registry </span></Link>
+               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Active users and balance</span></Link>
+               <Link to="/Admin/usersmainframe" className="flex flex-row text-xs gap-2  items-center my-2"><FaUsers /><span>Users in registry </span></Link>
                 <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><CiCreditCard1/><span>Total amount in registry</span></Link>
                 <p className="font-bold">Transfers</p>
                
-
-               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
-               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
-               <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Dashboard</span></Link>
             </nav>
         </div>
     </aside>

@@ -24,7 +24,7 @@ const usr = useStoreState((state) => state.usr);
 
       <div>
           <div className="text-xl font-bold">Account Settings</div>
-          <div className=" bg-slate-950 rounded-2xl">
+          <div className=" bg-[#5B0F12] rounded-2xl">
             <div className='flex flex-col pt-6 items-center mt-7 text-zinc-100' > 
                 <div className="p-5 rounded-full border"></div>
                 <div className="flex flex-col items-center mt-2 text-sm">

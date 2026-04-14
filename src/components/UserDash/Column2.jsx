@@ -80,7 +80,7 @@ const Column2 = () => {
             </div>
         </div>
         {/* Need Help */}
-        <div className='flex bg-gray-900 flex-col justify-center items-center h-min  px-2.5 py-7 w-full mt-10 rounded-xl text-slate-100'>
+        <div className='flex bg-[#5B0F12] flex-col justify-center items-center h-min  px-2.5 py-7 w-full mt-10 rounded-xl text-slate-100'>
             <div class="flex flex-col items-center " >
                     <div className='text-current p-2 bg-slate-50 border rounded-full shadow-3xl mb-4 text-slate-950'><MdOutlineContactSupport /></div>
                     <h5 className="text-sm font-bold">Need help?</h5>

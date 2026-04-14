@@ -57,11 +57,11 @@ const [pendingTransferData, setPendingTransferData] = useState(null);
   } = useForm({
     // defaultValues: {
     //   beneficiaryName: "",
-    //   AccountNumber,
-    //   BankName:"",
-    //   AmountTransferred:"",
-    //   PurposeOfTransfer:"",
-      // type
+    //   accountNumber,
+    //   bankName:"",
+    //   amountTransferred:"",
+    //   purposeOfTransfer:"",
+      // Transactiontype
     // },
 });
 
@@ -96,7 +96,7 @@ const handleTransferSuccess = (responseData) => {
 
       <div className="mx-3 pt-10 pb-56 bg-gray-200 lg:mx-10 xl:mx-28">
                     <h1 className='text-lg font-bold'>Local Transfer</h1>
-                    <div className='bg-slate-950 rounded-2xl my-1'>
+                    <div className='bg-[#5B0F12] rounded-2xl my-1'>
                         <div className='flex flex-col justify-center items-center mt-5 text-zinc-100' >
                             <div className=' p-2 border rounded-full shadow-3xl mb-2 mt-2 text-zinc-100'><IoIosSend className='text-2xl'/></div>
                             <h2 className='text-sm font-semibold'>Local Bank Transfer</h2>
@@ -348,7 +348,7 @@ const handleTransferSuccess = (responseData) => {
                    
                       
 
-                        <button type="submit" className='w-full flex justify-center items-center rounded-md text-xs font-medium bg-slate-950 text-slate-50 p-2 gap-1 mt-1 mb-3'>
+                        <button type="submit" className='w-full flex justify-center items-center rounded-md text-xs font-medium bg-[#5B0F12] text-slate-50 p-2 gap-1 mt-1 mb-3'>
                            <IoIosSend /> <span>Proceed to Transfer</span>
                         </button>
 

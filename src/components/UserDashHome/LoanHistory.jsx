@@ -9,7 +9,7 @@ const LoanHistory = () => {
 
     <div className='text-lg font-bold my-5'>Loan History</div>
 
-        <div className="bg-slate-950 text-slate-100 rounded-2xl">
+        <div className="bg-[#5B0F12] text-slate-100 rounded-2xl">
             <div className='flex flex-col px-9'>
                 <div className="flex mt-5 gap-2">
                     <div><FaClockRotateLeft className="mt-2 text-xl"/></div> <div className="flex flex-col"><span className="font-bold text-sm">Your Loan Applications</span><span className="text-xs">Track and manage your loan requests</span></div>
@@ -31,7 +31,7 @@ const LoanHistory = () => {
 
 
          <div class="overflow-x-auto mt-10">
-          <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <table class="min-w-full bg-[#5B0F12] border border-gray-200 rounded-lg overflow-hidden">
             <thead class="bg-slate-950">
               <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium text-slate-50 uppercase tracking-wider">

@@ -28,7 +28,7 @@ const Loan = () => {
         <div className="flex flex-col text-sm"><span className="font-bold text-xs">Loan Application Restricted</span><span className="text-xs">You currently have an active or pending loan application. You cannot apply for a new loan until your current loan is completed or your application is processed.Please check your <Link to='' className="underline">existing loans</Link>  for more information.</span></div>
       </div>
     
-      <div className='bg-slate-950 rounded-2xl'>
+      <div className='bg-[#5B0F12] rounded-2xl'>
             <div className='flex flex-col justify-center items-center mt-5 text-zinc-100' >
                 <div className='text-current p-2 border bg-slate-950 rounded-full shadow-3xl mt-8 mb-4 text-slate-50'><FaMoneyBill /></div>
                 <h2 className='text-sm font-bold'>Loan Services</h2>

@@ -39,7 +39,7 @@ const Deposit = () => {
     <>
     <div className="pt-10 pb-56 px-3 lg:px-20 xl:px-24">
           <h1 className='text-xl font-bold'>Deposit Funds</h1>
-                 <div className='bg-slate-950 rounded-2xl'>
+                 <div className='bg-[#5B0F12] rounded-2xl'>
                     <div className='flex flex-col justify-center items-center mt-5 text-zinc-100' >
                         <div className='text-current p-2 border bg-slate-950 rounded-full shadow-3xl my-2 text-slate-50'><FaPiggyBank className='text-2xl'/></div>
                         <h2 className='text-sm font-bold'>Local Bank Transfer</h2>
@@ -116,7 +116,7 @@ const Deposit = () => {
                  </div>
     
                    {/* submit form */}
-                <div className='flex justify-center items-center rounded-md text-xs font-medium bg-slate-950 text-slate-50 p-1 gap-1 mt-3 mb-3' ><CiCreditCard1 /> <span>Continue to deposit</span></div>
+                <div className='flex justify-center items-center rounded-md text-xs font-medium bg-[#5B0F12] text-slate-50 p-1 gap-1 mt-3 mb-3' ><CiCreditCard1 /> <span>Continue to deposit</span></div>
                 <div className='flex justify-center items-center rounded-md text-xs font-medium border-2 border-stone-300 p-1 gap-1 mt-3 mb-3'> <IoMdArrowBack /> <span>Back to Dashboard</span></div>                        
             </form>
     
