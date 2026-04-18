@@ -414,7 +414,7 @@ const OtpPinModal = ({ open, onClose, transferData, onSuccess }) => {
                    <p className="text-center text-xs text-zinc-400 mt-4">
                 Don't have your OTTC code?{' '}
                 <Link
-                  to="/support"
+                  to="/Userdashboard/support"
                   className="text-slate-800 font-semibold underline hover:text-slate-600 transition-colors"
                 >
                   Contact support

@@ -1,6 +1,12 @@
 import { CiFilter, CiExport, CiSearch } from "react-icons/ci";
+import { IoIosSend,IoMdArrowBack } from "react-icons/io";
 import { useState } from 'react';
+import { useNavigate,Link } from "react-router-dom"
 import { useStoreState } from "easy-peasy";
+
+
+
+
 
 const AccountHistory = () => {
   const RecentTransactions = useStoreState((state) => state.RecentTransactions);
@@ -129,6 +135,9 @@ const AccountHistory = () => {
       </div>
 
       <p className="mt-3 text-xs text-gray-500">{filtered.length} transaction{filtered.length !== 1 ? "s" : ""} shown</p>
+
+
+       <Link to="/Userdashboard"> <div className='flex justify-center items-center rounded-md text-xs font-medium border-2 border-stone-300 p-1 gap-1 mt-3 mb-3'> <IoMdArrowBack /> <span>Back to Dashboard</span></div>  </Link>        
     </div>
   );
 };

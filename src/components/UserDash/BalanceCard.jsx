@@ -163,20 +163,129 @@
 
 
 
+// import { TbWallet, TbActivityHeartbeat } from "react-icons/tb";
+// import { GoDotFill } from "react-icons/go";
+// import { Link } from "react-router-dom";
+// import { useStoreState } from 'easy-peasy';
+
+// const BalanceCard = () => {
+//   const usr = useStoreState((state) => state.usr);
+
+
+//   // console.log(usr)
+
+//   const getStatusStyle = (status) => {
+//     switch (status?.toLowerCase()) {
+//       case 'active':   return { pill: 'bg-green-500/10 border-green-500/30', text: 'text-green-400', dot: 'text-green-400' };
+//       case 'inactive': return { pill: 'bg-white/5 border-white/10',          text: 'text-white/40',  dot: 'text-white/40' };
+//       case 'blocked':  return { pill: 'bg-yellow-500/10 border-yellow-400/30', text: 'text-yellow-400', dot: 'text-yellow-400' };
+//       default:         return { pill: 'bg-white/5 border-white/10',          text: 'text-white/40',  dot: 'text-white/40' };
+//     }
+//   };
+
+//   const s = getStatusStyle(usr?.status);
+
+//   return (
+//     <div className="w-full mt-13 px-2 xl:px-0 space-y-2.5">
+
+//       {/* Top bar */}
+//       <div className="bg-[#5B0F12]  rounded-xl px-5 py-4 flex items-center justify-between">
+//         <p className="text-sm font-medium text-white/90">
+//           Good Evening, {usr?.firstname}!
+//         </p>
+//         <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-medium ${s.pill} ${s.text}`}>
+//           <GoDotFill size={8} className={s.dot} />
+//           {usr?.status}
+//         </div>
+//       </div>
+
+//       {/* Balance panel */}
+//       <div className="bg-[#5B0F12]   rounded-xl px-5 py-5 border border-white/[0.06] space-y-1">
+//         <p className="text-[11px] uppercase tracking-widest text-white/35">
+//           Available balance
+//         </p>
+//         <p className="text-[32px] font-medium text-white font-mono leading-tight">
+//           <span className="text-xl text-white/55">$</span>
+//           {usr?.balance?.toFixed(2)}
+//         </p>
+
+//         <div className="h-px bg-white/[0.08] my-3" />
+
+//         <div className="flex justify-between items-center py-1">
+//           <span className="text-xs text-white/35">Account number</span>
+//           <span className="text-xs text-white/75 font-mono">{usr?.accountNumber}</span>
+//         </div>
+
+//         <div className="flex justify-between items-center py-1">
+//           <span className="text-xs text-white/35">Account type</span>
+//           <span className="text-[11px] text-white/45 uppercase tracking-wide">{usr?.accounttype}</span>
+//         </div>
+//       </div>
+
+//       {/* Actions */}
+//       <div className="grid grid-cols-2 gap-2.5">
+//         <Link
+//           to="/Userdashboard/deposit"
+//           className="flex items-center justify-center gap-2 py-3 rounded-lg
+//             bg-[#5B0F12]  border border-white/10
+//             text-white/70 hover:text-white/95 hover:bg-[#2a0808]
+//             text-xs font-medium transition-colors"
+//         >
+//           <TbWallet size={14} />
+//           Fund Account
+//         </Link>
+//         <Link
+//           to="/Userdashboard/accounthistory"
+//           className="flex items-center justify-center gap-2 py-3 rounded-lg
+//             bg-[#5B0F12]  border border-white/10
+//             text-white/70 hover:text-white/95 hover:bg-[#5B0F12] 
+//             text-xs font-medium transition-colors"
+//         >
+//           <TbActivityHeartbeat size={14} />
+//           Transaction History
+//         </Link>
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default BalanceCard;
+
+
+
+
 import { TbWallet, TbActivityHeartbeat } from "react-icons/tb";
 import { GoDotFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { useStoreState } from 'easy-peasy';
+import { useState, useEffect } from 'react';
 
 const BalanceCard = () => {
   const usr = useStoreState((state) => state.usr);
+  const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
+    const updateGreeting = () => {
+      const hour = new Date().getHours(); // uses device's local timezone automatically
+      if (hour >= 5 && hour < 12)       setGreeting('Good Morning');
+      else if (hour >= 12 && hour < 17) setGreeting('Good Afternoon');
+      else if (hour >= 17 && hour < 21) setGreeting('Good Evening');
+      else                               setGreeting('Good Night');
+    };
+
+    updateGreeting();
+    // Update every minute in case the component stays mounted across a boundary
+    const interval = setInterval(updateGreeting, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   const getStatusStyle = (status) => {
     switch (status?.toLowerCase()) {
-      case 'active':   return { pill: 'bg-green-500/10 border-green-500/30', text: 'text-green-400', dot: 'text-green-400' };
-      case 'inactive': return { pill: 'bg-white/5 border-white/10',          text: 'text-white/40',  dot: 'text-white/40' };
-      case 'pending':  return { pill: 'bg-yellow-500/10 border-yellow-400/30', text: 'text-yellow-400', dot: 'text-yellow-400' };
-      default:         return { pill: 'bg-white/5 border-white/10',          text: 'text-white/40',  dot: 'text-white/40' };
+      case 'active':   return { pill: 'bg-green-500/10 border-green-500/30',   text: 'text-green-400',  dot: 'text-green-400'  };
+      case 'inactive': return { pill: 'bg-amber-500/10 border-amber-400/30',   text: 'text-amber-400',  dot: 'text-amber-400'  };
+      case 'blocked':  return { pill: 'bg-red-500/10 border-red-400/30',       text: 'text-red-400',    dot: 'text-red-400'    };
+      default:         return { pill: 'bg-white/5 border-white/10',            text: 'text-white/40',   dot: 'text-white/40'   };
     }
   };
 
@@ -186,9 +295,9 @@ const BalanceCard = () => {
     <div className="w-full mt-13 px-2 xl:px-0 space-y-2.5">
 
       {/* Top bar */}
-      <div className="bg-[#5B0F12]  rounded-xl px-5 py-4 flex items-center justify-between">
+      <div className="bg-[#5B0F12] rounded-xl px-5 py-4 flex items-center justify-between">
         <p className="text-sm font-medium text-white/90">
-          Good Evening, {usr?.firstname}!
+          {greeting}, {usr?.firstname}!
         </p>
         <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-medium ${s.pill} ${s.text}`}>
           <GoDotFill size={8} className={s.dot} />
@@ -197,7 +306,7 @@ const BalanceCard = () => {
       </div>
 
       {/* Balance panel */}
-      <div className="bg-[#5B0F12]   rounded-xl px-5 py-5 border border-white/[0.06] space-y-1">
+      <div className="bg-[#5B0F12] rounded-xl px-5 py-5 border border-white/[0.06] space-y-1">
         <p className="text-[11px] uppercase tracking-widest text-white/35">
           Available balance
         </p>
@@ -224,7 +333,7 @@ const BalanceCard = () => {
         <Link
           to="/Userdashboard/deposit"
           className="flex items-center justify-center gap-2 py-3 rounded-lg
-            bg-[#5B0F12]  border border-white/10
+            bg-[#5B0F12] border border-white/10
             text-white/70 hover:text-white/95 hover:bg-[#2a0808]
             text-xs font-medium transition-colors"
         >
@@ -234,8 +343,8 @@ const BalanceCard = () => {
         <Link
           to="/Userdashboard/accounthistory"
           className="flex items-center justify-center gap-2 py-3 rounded-lg
-            bg-[#5B0F12]  border border-white/10
-            text-white/70 hover:text-white/95 hover:bg-[#5B0F12] 
+            bg-[#5B0F12] border border-white/10
+            text-white/70 hover:text-white/95 hover:bg-[#5B0F12]
             text-xs font-medium transition-colors"
         >
           <TbActivityHeartbeat size={14} />
@@ -248,11 +357,6 @@ const BalanceCard = () => {
 };
 
 export default BalanceCard;
-
-
-
-
-
 
 
 

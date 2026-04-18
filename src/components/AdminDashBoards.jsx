@@ -1,4 +1,4 @@
-import logo from '../assets/images.jpeg';
+import logo from '../assets/swiss.jpeg';
 import AdminSideBar from './AdminDashHome/AdminSideBar';
 import AdminBoardHome from './AdminDashHome/AdminBoardHome';
 import User from './AdminDashHome/User';
@@ -7,6 +7,7 @@ import UserSingleFrame from './AdminDashHome/UserSingleFrame'
 import TopBalance from './AdminDashHome/TopBalance';
 import DeductBalance from './AdminDashHome/DeductBalance';
 import CreditUser from './AdminDashHome/CreditUser';
+import UpdateStatus from './AdminDashHome/UpdateStatus'
 import UserHistory from './AdminDashHome/UserHistory';
 import { FaRegUserCircle  } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -149,10 +150,6 @@ const AdminDashBoard = () => {
 
 
 
-
-
-
-
   return (
      <>
      <header className='fixed top-0 z-10 bg-[#5B0F12] text-slate-50 w-full'>
@@ -183,8 +180,9 @@ const AdminDashBoard = () => {
         <Route path="/add/:id" element={<TopBalance/>} />
         <Route path="/subtract/:id" element={<DeductBalance/>} />
         <Route path="/credit/:id" element={<CreditUser/>} />
+        <Route path="/status/:id" element={<UpdateStatus />} />
         <Route path="/history/:id" element={<UserHistory/>} />
-         <Route path="/usersmainframe/" element={<UsersMainFrame/>} />
+        <Route path="/usersmainframe/" element={<UsersMainFrame/>} />
          <Route path="/userframe/:id" element={<UserSingleFrame />} />
       </Routes>
       </section>

@@ -40,9 +40,51 @@ setDeductBalance: action((state, payload) => {
         state.deductBalance = payload;
     }),
 
+editStatus: '',
+setEditStatus: action((state, payload) => {
+        state.editStatus = payload;
+    }),
 
 
-    // save top user balance async function
+
+
+
+//save update status
+saveUpdateStatus: thunk(async (actions, updateStatus, helpers) => {
+          const { Users } = helpers.getState();
+    const { id, status } = updateStatus;
+
+    try {
+        const response = await axiosPrivate.patch(`/Admin/status/${id}`, { status });
+
+        // Update the user's status in local store
+        actions.setUsers(Users.map(user =>
+            user.usersdetail._id === id
+                ? { ...user, usersdetail: { ...user.usersdetail, status: response.data.data.status } }
+                : user
+        ));
+        actions.setEditStatus('');
+
+        return {
+            success: true,
+            data: response.data,
+            status: response.data.data.status,
+            message: 'Status updated successfully'
+        };
+
+    } catch (err) {
+        return {
+            success: false,
+            error: err.message || 'Failed to update status',
+            details: err.response?.data
+        };
+    }
+}),
+
+
+
+
+// save top user balance async function
 saveBalance: thunk(async (actions, updatedBalance, helpers) => {
         const { Users } = helpers.getState();
         const { id } = updatedBalance;
@@ -145,8 +187,6 @@ saveUsersMain:thunk(async (actions, payload, helpers) => {
       
 }),
     
-
-
 
 
 

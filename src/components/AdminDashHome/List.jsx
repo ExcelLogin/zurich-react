@@ -108,20 +108,16 @@ const Lists = () => {
       row.usersdetail.email.toLowerCase().includes(q) ||
       row.usersdetail.firstname.toLowerCase().includes(q) ||
       row.usersdetail.lastname.toLowerCase().includes(q) ||
-      row.status.toLowerCase().includes(q)
+      row.usersdetail.status.toLowerCase().includes(q)
     );
   });
 
-  const getStatusClass = (status) => {
-    switch (status) {
-      case 'Active':
-        return 'bg-emerald-100 text-emerald-700';
-      case 'pending':
-        return 'bg-amber-100 text-amber-700';
-      case 'Inactive':
-        return 'bg-slate-100 text-slate-500';
-      default:
-        return 'bg-slate-100 text-slate-500';
+const getStatusClass = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'active':   return 'bg-emerald-100 text-emerald-700';
+      case 'inactive': return 'bg-amber-100 text-amber-700';
+      case 'blocked':  return 'bg-red-100 text-red-700';
+      default:         return 'bg-slate-100 text-slate-500';
     }
   };
 
@@ -135,7 +131,7 @@ const Lists = () => {
         <div className="flex items-end justify-between flex-wrap gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-semibold text-slate-800 tracking-tight">
-              Users
+              Active users
             </h1>
             <p className="text-sm text-slate-500 mt-0.5">
               {filtered.length} of {Users.length} total users
@@ -220,8 +216,8 @@ const Lists = () => {
 
                     {/* Status */}
                     <td className="px-5 py-4 whitespace-nowrap">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusClass(row.status)}`}>
-                        {row.status}
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusClass(row.usersdetail.status)}`}>
+                        {row.usersdetail.status}
                       </span>
                     </td>
                   </tr>
@@ -248,7 +244,18 @@ const Lists = () => {
             </div>
           )}
         </div>
+
+
+
+<Link
+  to="/Admin/usersmainframe"
+  className="px-3 py-2 bg-[#5B0F12] border border-zinc-200 text-slate-100 text-xs font-medium rounded-lg hover:bg-zinc-50 transition-colors inline-flex mt-4"
+>
+  <div className='text-white'>see users profile</div>
+</Link>
       </div>
+    
+     
     </div>
   );
 };

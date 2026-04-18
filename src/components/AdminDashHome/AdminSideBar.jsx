@@ -74,7 +74,7 @@ navigate('/Adminlogin', { replace: true });
                <p className="font-bold">Main Menu</p>
                <Link  to="" className="flex flex-row items-center gap-2 text-xs my-2"><IoHome/><span>Active users and balance</span></Link>
                <Link to="/Admin/usersmainframe" className="flex flex-row text-xs gap-2  items-center my-2"><FaUsers /><span>Users in registry </span></Link>
-                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><CiCreditCard1/><span>Total amount in registry</span></Link>
+                <Link to=""  className="flex flex-row text-xs gap-2 items-center my-2"><CiCreditCard1/><span>All transaction history</span></Link>
                 <p className="font-bold">Transfers</p>
                
             </nav>

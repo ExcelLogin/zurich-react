@@ -1,104 +1,3 @@
-// import { useParams, Link } from "react-router-dom";
-// import { useStoreState, useStoreActions } from 'easy-peasy';
-// import TransactionTable from "./TransactionTable"; 
-
-
-
-
-// const User = () => {
-//     const { id } = useParams();
-//     const getUserById = useStoreState((state) => state.getUserById);
-//     const user = getUserById(id);
-//     const getTFsById = useStoreState((state) => state.getTFsById);
-//     const filtered = getTFsById(id);
-//     //  console.log(filtered)
-
-
-//       // Status badge styling based on status
-//   const getStatusStyle = (status) => {
-//     switch (status?.toLowerCase()) {
-//       case 'active':
-//         return 'bg-green-100 text-green-800 border-green-200';
-//       case 'inactive':
-//         return 'bg-gray-100 text-gray-800 border-gray-200';
-//       case 'pending':
-//         return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-//       default:
-//         return 'bg-blue-100 text-blue-800 border-blue-200';
-//     }
-//   };
-
-//   return (
-//     <>
-//     <div className="text-slate-950 text-2xl pt-10 pb-32">
-    
-//         <div className="flex flex-col items-start justify-start min-h-screen  p-4 ">
-//                           <div className="text-left text-sm font-medium mb-5">Account registery status</div>
-//                             <div className="w-full  bg-white rounded-lg shadow-lg overflow-hidden">
-//                               {/* Header Section */}
-//                               <div className="bg-[#5B0F12] p-6">
-//                                 <div className="flex items-center justify-between">
-//                                   <div>
-//                                     <h2 className="text-sm font-bold text-white">{user?.usersdetail.firstname}</h2>
-//                                     <p className="text-blue-100 text-sm mt-1">{user?.usersdetail.email}</p>
-//                                   </div>
-//                                   <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-slate-900 font-bold text-xl">
-//                                     {user?.usersdetail.firstname.charAt(0)}
-//                                   </div>
-//                                 </div>
-//                               </div>
-
-//                               {/* Body Section */}
-//                               <div className="p-6 space-y-4">
-//                                 {/* Status */}
-//                                 <div className="flex items-center justify-between py-3 border-b border-gray-200">
-//                                   <span className="text-gray-600 font-medium text-xs">Status</span>
-//                                   <span className={`px-3 py-1 rounded-full text-sm font-semibold border ${getStatusStyle(user?.status)}`}>
-//                                     {user?.status}
-//                                   </span>
-//                                 </div>
-
-//                                 {/* Balance */}
-//                                 <div className="flex items-center justify-between py-3">
-//                                   <span className="text-gray-600 font-medium text-sm">Account Balance</span>
-//                                   <span className="text-xl font-bold text-gray-900">
-//                                     ${user?.balance.toFixed(2)}
-//                                   </span>
-//                                 </div>
-//                               </div>
-
-//                               {/* Footer Actions (Optional) */}
-//                               <div className="px-6 pb-6 grid grid-cols-1 gap-3 xl:flex">
-//                                 <button className="flex-1 bg-slate-900 text-white py-2 rounded-lg font-medium text-xs hover:bg-slate-700 transition-colors">
-//                                   Update status
-//                                 </button>
-//                                   <button className="flex-1 bg-slate-900 text-slate-50 text-xs py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors">
-//                                   <Link to={`/Admin/subtract/${user?.usersdetail._id}`} > Deduct balance</Link>
-//                                 </button>
-//                                   <button className="flex-1 bg-gray-300 text-gray-700 text-xs py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-//                                   <Link to={`/Admin/add/${user?.usersdetail._id}`} > Top balance</Link>
-//                                 </button>
-
-//                                   <button className="flex-1 bg-gray-300 text-gray-700 text-xs py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-//                                   <Link to={`/Admin/usersmainframe`} > Update user profile</Link>
-//                                 </button>
-                                
-//                               </div>
-//                             </div> 
-
-                          
-
-//                           {/* user transaction history */}
-//                            <TransactionTable filtered={filtered} />
-//               </div>
-
-//   </div>
-//   </>
-//   )
-// }
-
-// export default User
-
 
 
 import { useParams, Link } from "react-router-dom";
@@ -114,11 +13,15 @@ const User = () => {
   const filtered = getTFsById(id);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const getStatusClass = (status) => {
+
+// console.log(user)
+
+
+const getStatusClass = (status) => {
     switch (status?.toLowerCase()) {
       case 'active':   return 'bg-emerald-100 text-emerald-700';
-      case 'inactive': return 'bg-slate-100 text-slate-500';
-      case 'pending':  return 'bg-amber-100 text-amber-700';
+      case 'inactive': return 'bg-amber-100 text-amber-700';
+      case 'blocked':  return 'bg-red-100 text-red-700';    
       default:         return 'bg-slate-100 text-slate-500';
     }
   };
@@ -143,8 +46,8 @@ const User = () => {
               {user?.usersdetail.email}
             </p>
           </div>
-          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusClass(user?.status)}`}>
-            {user?.status}
+          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getStatusClass(user?.usersdetail.status)}`}>
+            {user?.usersdetail.status}
           </span>
         </div>
       </div>
@@ -170,11 +73,17 @@ const User = () => {
       {/* Actions */}
       <div className="p-4 space-y-1 flex-1">
         <p className="text-[10px] uppercase tracking-widest text-slate-400 px-2 mb-3">Actions</p>
+        
 
-        <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:bg-zinc-50 hover:text-slate-900 transition-colors text-left">
+
+        <Link to={`/Admin/status/${user?.usersdetail._id}`}>
+
+           <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:bg-zinc-50 hover:text-slate-900 transition-colors text-left">
           <span className="w-7 h-7 rounded-lg bg-zinc-100 flex items-center justify-center text-xs text-slate-500 shrink-0">✎</span>
           Update status
         </button>
+        </Link>
+      
 
         <Link 
           to={`/Admin/credit/${user?.usersdetail._id}`}
@@ -220,7 +129,7 @@ const User = () => {
       {/* ── Mobile top bar ── */}
       <div className="lg:hidden flex items-center justify-between px-4 py-3 bg-white border-b border-zinc-200 sticky top-0 z-30">
         <Link
-          to="/Admin/usersmainframe"
+          to="/Admin"
           className="text-xs text-slate-500 hover:text-[#5B0F12] transition-colors"
         >
           ← Users
@@ -328,8 +237,8 @@ const User = () => {
                 { label: 'Email address', value: user?.usersdetail.email },
                 { label: 'Account number', value: user?.accountNumber },
                 { label: 'Status', value: (
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusClass(user?.status)}`}>
-                    {user?.status}
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusClass(user?.usersdetail.status)}`}>
+                  {user?.usersdetail.status}
                   </span>
                 )},
                 { label: 'Balance', value: (

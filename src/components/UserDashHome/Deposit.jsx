@@ -11,7 +11,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import FormHelperText from '@mui/material/FormHelperText';
  import InputAdornment from '@mui/material/InputAdornment';
 import { RiSecurePaymentFill } from "react-icons/ri";
-
+import { Link } from "react-router-dom";
 
 
 
@@ -117,7 +117,7 @@ const Deposit = () => {
     
                    {/* submit form */}
                 <div className='flex justify-center items-center rounded-md text-xs font-medium bg-[#5B0F12] text-slate-50 p-1 gap-1 mt-3 mb-3' ><CiCreditCard1 /> <span>Continue to deposit</span></div>
-                <div className='flex justify-center items-center rounded-md text-xs font-medium border-2 border-stone-300 p-1 gap-1 mt-3 mb-3'> <IoMdArrowBack /> <span>Back to Dashboard</span></div>                        
+                <Link to="/Userdashboard"> <div className='flex justify-center items-center rounded-md text-xs font-medium border-2 border-stone-300 p-1 gap-1 mt-3 mb-3'> <IoMdArrowBack /> <span>Back to Dashboard</span></div>  </Link>                      
             </form>
     
                 <div className='flex flex-row items-center mb-1 mt-8 pl-5 gap-3 text-sm'>

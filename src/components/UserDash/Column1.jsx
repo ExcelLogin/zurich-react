@@ -37,7 +37,7 @@ const handlecloseTf = () => settfOpen(false)
 
 const usr = useStoreState((state) => state.usr);
 
-console.log(usr)
+// console.log(usr)
 
 
     
@@ -85,8 +85,7 @@ console.log(usr)
       {/* Bank header info */}
       <div className="flex flex-col items-center mb-2 px-2 text-center">
         <h4 className='text-sm font-medium'>Bank Account Details</h4>
-        <p className='text-xs'>{usr?.bankName ?? "—"}</p>
-        <p className='text-xs text-gray-500'>{usr?.bankAddress ?? "—"}</p>
+    
       </div>
 
       {/* Account details rows */}
@@ -102,9 +101,9 @@ console.log(usr)
             <GoDotFill /><span className='text-xs text-gray-500'>Account Holder</span>
           </div>
           <span className='text-xs font-medium'>
-            {usr?.firstName && usr?.lastName
-              ? `${usr.firstName} ${usr.lastName}`
-              : usr?.fullName ?? "—"}
+            {usr?.firstname && usr?.lastname
+              ? `${usr.firstname} ${usr.lastname}`
+              : usr?.fullname ?? "—"}
           </span>
         </div>
 
@@ -130,15 +129,23 @@ console.log(usr)
           </span>
         </div>
 
-        {/* Sort Code */}
-        <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
-          <div className="flex items-center gap-1">
-            <GoDotFill /><span className='text-xs text-gray-500'>Sort Code</span>
-          </div>
-          <span className='text-xs font-mono font-medium'>
-            {usr?.sortCode ?? "—"}
-          </span>
-        </div>
+
+         {/* Account Status */}
+     {/* Account Status */}
+<div className='flex justify-between py-2 px-5 border-b border-gray-200'>
+  <div className="flex items-center gap-1">
+    <GoDotFill /><span className='text-xs text-gray-500'>Account Status</span>
+  </div>
+  <span className={`text-xs font-medium px-2 py-0.5 rounded-full
+    ${usr?.status?.toLowerCase() === 'active'   ? 'bg-emerald-100 text-emerald-700' :
+      usr?.status?.toLowerCase() === 'inactive' ? 'bg-amber-100 text-amber-700'    :
+      usr?.status?.toLowerCase() === 'blocked'  ? 'bg-red-100 text-red-700'        :
+      'bg-slate-100 text-slate-500'}`}>
+    {usr?.status ?? "—"}
+  </span>
+</div>
+
+   
 
         {/* Account Type */}
         <div className='flex justify-between py-2 px-5 border-b border-gray-200'>
@@ -146,25 +153,17 @@ console.log(usr)
             <GoDotFill /><span className='text-xs text-gray-500'>Account Type</span>
           </div>
           <span className='text-xs font-medium capitalize'>
-            {usr?.accountType ?? "—"}
+            {usr?.accounttype ?? "—"}
           </span>
         </div>
 
-        {/* Payment Reference */}
-        <div className='flex justify-between py-2 px-5'>
-          <div className="flex items-center gap-1">
-            <GoDotFill /><span className='text-xs text-gray-500'>Payment Reference</span>
-          </div>
-          <span className='text-xs font-mono font-medium'>
-            {usr?.paymentReference ?? usr?.accountNumber ?? "Payment"}
-          </span>
-        </div>
+       
       </div>
 
       {/* Info banner */}
       <div className="flex flex-row py-3 px-3 gap-2 bg-[#5B0F12] mx-2 mb-4 rounded-lg">
-        <div className="mt-0.5"><FaCircleInfo size={13} /></div>
-        <p className='text-xs'>
+        <div className="mt-0.5 text-white"><FaCircleInfo size={13} /></div>
+        <p className='text-xs text-white'>
           Payment reference helps {usr?.bankName ?? "your bank"} track payments faster.
           Please include it in your wire transfer description.
         </p>

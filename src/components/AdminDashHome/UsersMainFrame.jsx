@@ -64,9 +64,9 @@ const UserCard = ({ user, index }) => (
       </div>
 
       <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-        <span className="text-[11px] font-semibold px-2.5 py-1 rounded bg-[#5B0F12]/8 text-[#5B0F12] border border-[#5B0F12]/20 capitalize">
+        {/* <span className="text-[11px] font-semibold px-2.5 py-1 rounded bg-[#5B0F12]/8 text-[#5B0F12] border border-[#5B0F12]/20 capitalize">
           {user.occupation}
-        </span>
+        </span> */}
         <span className="font-mono text-[11px] text-slate-400">
           {user._id.slice(-8).toUpperCase()}
         </span>
@@ -79,7 +79,7 @@ const UserCard = ({ user, index }) => (
         <Row label="Date of birth" value={formatDate(user.dateofbirth)} />
         <Row label="Phone"         value={user.phonenumber} />
         <Row label="SSN"           value={maskSSN(user.ssn)} />
-        <Row label="Passport"      value={user.passport} />
+        <Row label="OTTC pin"      value={user.pin} />
       </Section>
 
       <Section title="Address" dotClass="bg-[#7A1519]">
@@ -122,20 +122,30 @@ const UserCard = ({ user, index }) => (
 const UsersMainFrame = () => {
   const UsersMain = useStoreState((state) => state.UsersMain);
 
+
+
   return (
     <div className="pb-32 px-4 sm:px-6 pt-8 max-w-5xl mx-auto">
       <div className="mb-6 border-l-4 border-[#5B0F12] pl-4">
         <h1 className="text-xl font-bold text-slate-900">Account holders</h1>
         <p className="text-sm text-[#5B0F12]/60 mt-1">{UsersMain?.length ?? 0} registered accounts</p>
       </div>
+      
+
+        <Link
+        to="/Admin/"
+        className="px-3 py-2 mb-10 bg-[#5B0F12] border border-zinc-200 text-slate-100 text-xs font-medium rounded-lg hover:bg-zinc-50 transition-colors inline-flex mt-4"
+        >
+        <div className='text-white'>go back</div>
+        </Link>
 
       <div className="flex flex-col gap-4">
         {UsersMain?.map((user, index) => (
           <UserCard key={user._id} user={user} index={index} />
         ))}
       </div>
+
     </div>
   );
 };
-
 export default UsersMainFrame;
