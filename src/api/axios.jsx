@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://zurich-express.vercel.app';
+const BASE_URL = 'https://zurich-express.vercel.app';
 
 // http://127.0.0.1:3000
 
