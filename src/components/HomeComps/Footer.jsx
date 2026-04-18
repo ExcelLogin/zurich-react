@@ -184,7 +184,7 @@ const Footer = () => {
         <div className="flex items-center gap-2">
           <span className="w-[3px] h-[3px] rounded-full bg-[#5B0F12]" />
           <span className="text-[10px] text-white/25 tracking-[0.08em]">
-            Copyright © {new Date().getFullYear()} Remedy Grand Chase Bank. All Rights Reserved.
+            Copyright © {new Date().getFullYear()} West Zurich Bank. All Rights Reserved.
           </span>
         </div>
 

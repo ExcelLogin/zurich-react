@@ -1188,13 +1188,13 @@ const Home = () => {
           {[
             {
               tag: 'Mobile banking',
-              title: 'How do I register for mobile banking at Remedy Grand Chase Bank?',
+              title: 'How do I register for mobile banking at West Zurich Bank?',
               footerTag: 'Getting started',
               icon: <svg viewBox="0 0 24 24" className="w-[18px] h-[18px] fill-none stroke-current" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/><path d="M9 7h6M9 11h4"/></svg>,
               content: (
                 <div className="flex flex-col gap-2.5">
                   {[
-                    'If you are enrolled in Online Banking, use your existing username and password to log in through the Remedy Grand Chase Bank Savings app.',
+                    'If you are enrolled in Online Banking, use your existing username and password to log in through the West Zurich Bank Savings app.',
                     'Android® and iPhone® users may enroll in the Mobile Deposit service to deposit checks directly using the app.',
                     'To enroll, select Mobile Deposit from the Main Menu, then review and accept the terms.',
                     'If you are not currently registered for Online Banking, you can sign up securely online.',
@@ -1209,13 +1209,13 @@ const Home = () => {
             },
             {
               tag: 'Mobile deposit',
-              title: 'How does Mobile Deposit work on the Remedy Grand Chase Bank app?',
+              title: 'How does Mobile Deposit work on the West Zurich Bank app?',
               footerTag: 'Deposits',
               icon: <svg viewBox="0 0 24 24" className="w-[18px] h-[18px] fill-none stroke-current" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>,
               content: (
                 <div className="flex flex-col gap-3">
                   <p className="text-xs text-white/65 leading-relaxed font-light">
-                    Our Mobile Deposit allows you to deposit a check through the Remedy Grand Chase Bank Savings mobile app using your internet-enabled iPhone® or Android™ device, provided your device has a camera.
+                    Our Mobile Deposit allows you to deposit a check through the West Zurich Bank Savings mobile app using your internet-enabled iPhone® or Android™ device, provided your device has a camera.
                   </p>
                   <div className="flex flex-col gap-2.5">
                     {[

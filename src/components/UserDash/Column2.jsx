@@ -117,14 +117,14 @@ const stats = [
     bg: "bg-blue-100",
     iconColor: "text-blue-600",
     label: "Daily Transfer Limit",
-    value: "$500,000.00",
+    value: "Unavailable",
   },
   {
     icon: <FaRegClock size={14} />,
     bg: "bg-amber-100",
     iconColor: "text-amber-600",
     label: "Pending Transactions",
-    value: "$12,450.00",
+    value: "Unavailable",
   },
   {
     icon: <IoIosStats size={16} />,
