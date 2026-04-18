@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/swiss.jpeg';
 import woman from '../assets/woman.png';
-import Hamburger from "./HomeComps/Hamburger";
+import Hamburger from "./HomeComps/hamburgers";
 import MobileMenu from "./HomeComps/MobileMenu";
 import Footer from './HomeComps/Footer'
 import { motion } from "framer-motion";
@@ -353,7 +353,7 @@ const Home = () => {
             with our app
           </h2>
           <p className="text-sm text-slate-700 leading-relaxed font-light max-w-sm">
-            Install Remedy Grand Chase Bank on your phone for instant access to your accounts, transfers, bill payments, and more.
+            Install West Zurich Bank on your phone for instant access to your accounts, transfers, bill payments, and more.
           </p>
           <div className="flex gap-3 flex-wrap justify-center lg:justify-start">
             <Link
@@ -644,7 +644,7 @@ const Home = () => {
           </div>
           <div className="flex-1 flex flex-col gap-4 md:pt-1">
             <p className="text-sm text-white/65 leading-relaxed font-light max-w-md">
-              Remedy Grand Chase Bank Savings Invent is our enterprise approach to innovation and supports our business strategy as a forward-focused bank. It's about using emerging technology to engage with our customers and exceeding their rapidly evolving expectations.
+              West Zurich Bank Savings Invent is our enterprise approach to innovation and supports our business strategy as a forward-focused bank. It's about using emerging technology to engage with our customers and exceeding their rapidly evolving expectations.
             </p>
             <div className="w-10 h-px bg-white/15" />
           </div>
@@ -1104,7 +1104,7 @@ const Home = () => {
             </h2>
 
             <p className="text-sm text-white/65 leading-relaxed font-light max-w-lg">
-              We've made it easy for Remedy Grand Chase Bank customers to harness their financial potential, bring their goals to life, and solve everyday financial challenges with confidence.
+              We've made it easy for wes zurich Bank customers to harness their financial potential, bring their goals to life, and solve everyday financial challenges with confidence.
             </p>
 
             <div className="w-8 h-px bg-white/15" />
